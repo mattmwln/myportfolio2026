@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Page Not Found</title>
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      main {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url('https://user-images.githubusercontent.com/10498744/210012254-234538ff-d198-48aa-8964-37e6fd45d227.gif') no-repeat center center fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="flex flex-col items-center gap-8">
+        <div class="flex flex-col items-center gap-2">
+          <h1 class='text-transparent bg-clip-text bg-gradient-to-r from-[#27a589] to-[#092a25] md:text-8xl text-6xl font-bold drop-shadow-lg'>404</h1>
+          <h2 class="text-transparent bg-clip-text bg-gradient-to-r from-[#092a25] to-[#27a589] md:text-4xl text-2xl font-bold drop-shadow-md">Page Not Found</h2>
+          <p class="text-transparent bg-clip-text bg-gradient-to-r from-[#27a589] to-[#092a25] md:text-base text-sm text-slate-400 drop-shadow-sm">Oops! It appears we can't find the page!</p>
+        </div>        
+        <div>
+          <a
+            href="/"
+            class="bg-cyan-600 hover:bg-cyan-700 outline-none ring ring-cyan-200 text-white px-6 py-2.5 rounded-md transition-all duration-100 text-sm font-medium"
+          >
+            Back home
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      const handleContextMenu = (e: MouseEvent) => e.preventDefault();
+const handleKeyDown = (e: KeyboardEvent) => {
+  if (
+    e.keyCode === 123 || 
+    (e.ctrlKey && e.shiftKey && e.keyCode === 'I'.charCodeAt(0)) ||
+    (e.ctrlKey && e.shiftKey && e.keyCode === 'J'.charCodeAt(0)) ||
+    (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+  ) {
+    e.preventDefault();
+  }
+};
+
+document.addEventListener("contextmenu", handleContextMenu);
+document.addEventListener("keydown", handleKeyDown);
+
+// Clean up listeners when component unmounts or page changes
+window.addEventListener("unload", () => {
+  document.removeEventListener("contextmenu", handleContextMenu);
+  document.removeEventListener("keydown", handleKeyDown);
+});
+    </script>
+  </body>
+</html>
