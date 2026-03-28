@@ -1,0 +1,1 @@
+const s="/_astro/nextjs.06c04b21.svg",a="/_astro/react.f65a23d2.svg",o="/_astro/typescript.3f9a5026.svg",t="/_astro/javascript.2bfc7791.svg",g="/_astro/nodejs.45d90fce.svg",c="/_astro/tailwind.be1e1fb5.svg",e="/_astro/figma.97a4ef3a.svg",r="/_astro/vite.aa2a5a5e.svg";export{o as a,g as b,e as f,t as j,s as n,a as r,c as t,r as v};

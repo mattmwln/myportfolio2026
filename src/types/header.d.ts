@@ -1,5 +1,5 @@
-interface LogoSocialMedia {
+export interface LogoSocialMedia {
   id: number;
-  logo: string;
-  navigate: string
+  logo: string; // ✅ ubah ke string
+  navigate: string;
 }

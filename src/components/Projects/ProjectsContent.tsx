@@ -1,6 +1,6 @@
-import React from "react";
+import type React from "react";
 import { motion } from "framer-motion";
-import { DATA_PROJECTS } from "./DataProjects";
+import  DATA_PROJECTS  from "./DataProjects";
 import { IconEye } from "@tabler/icons-react";
 
 const cardVariants = {
