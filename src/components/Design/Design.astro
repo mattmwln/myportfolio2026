@@ -1,0 +1,212 @@
+---
+import { DATA_DESIGN } from "./DataDesign";
+---
+
+<section class="py-32 bg-white">
+  <div class="container mx-auto px-6">
+
+    <!-- HEADER -->
+    <div class="mb-16 text-center">
+      <span class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs">
+        Project Design
+      </span>
+      <h2 class="text-4xl md:text-5xl font-black mt-3 text-gray-900">
+        Social Media
+      </h2>
+      <div class="w-12 h-1.5 bg-gray-300 mt-6 rounded-full mx-auto"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-16">
+
+      <!-- LEFT -->
+      <div class="w-full md:w-5/12 space-y-2">
+        {Object.entries(DATA_DESIGN).map(([key, item], index) => (
+          <div
+            class={`accordion-item border-b border-gray-200 pb-6 cursor-pointer ${index === 0 ? "active" : ""}`}
+            data-type={key}
+          >
+            <div class="flex items-center justify-between py-4">
+              <h3 class="text-2xl font-black text-gray-900">
+                {item.title}
+              </h3>
+
+              <span class="chevron text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-width="2" d="M6 9l6 6 6-6"/>
+                </svg>
+              </span>
+            </div>
+
+            <div class="accordion-content">
+              <p class="text-sm text-gray-600 leading-relaxed mb-6 max-w-md">
+                {item.description}
+              </p>
+
+              <div class="mobile-visual-container block md:hidden"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- RIGHT -->
+      <div id="desktop-visual" class="hidden md:flex w-7/12 relative justify-center items-center min-h-[420px]"></div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  :root {
+    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .accordion-content {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+    transition:
+      height 0.55s var(--spring),
+      opacity 0.35s ease,
+      transform 0.55s var(--spring);
+  }
+
+  .accordion-item.active .accordion-content {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .chevron {
+    transition: transform 0.5s var(--spring);
+  }
+
+  .accordion-item.active .chevron {
+    transform: rotate(180deg) scale(1.15);
+  }
+
+  .device-shadow {
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15);
+  }
+
+  .visual-wrapper {
+    animation: springIn 0.6s var(--spring);
+  }
+
+  @keyframes springIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    60% {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>
+
+<script >
+  import { DATA_DESIGN, type DesignType } from "./DataDesign";
+
+  function renderVisual(type: DesignType, isMobile: boolean = false): string {
+    const data = DATA_DESIGN[type];
+
+    return `
+      <div class="visual-wrapper relative flex justify-center items-center w-full">
+        <div class="${isMobile ? 'w-[75%]' : 'w-[80%]'} aspect-[4/3] bg-black rounded-[2rem] p-2 device-shadow">
+          <div class="w-full h-full bg-cover bg-center rounded-[1.5rem]"
+            style="background-image:url('${data.tabletImg}')"></div>
+        </div>
+
+        ${
+          data.showPhone
+            ? `<div class="${isMobile ? 'w-[30%] -ml-12 mt-8' : 'absolute w-[35%]'} aspect-[1/2] bg-black rounded-[2rem] p-1 device-shadow">
+                <div class="w-full h-full bg-cover bg-center rounded-[1.5rem]"
+                  style="background-image:url('${data.phoneImg}')"></div>
+              </div>`
+            : ""
+        }
+      </div>
+    `;
+  }
+
+  function animateOpen(content: HTMLElement): void {
+    content.style.height = "0px";
+
+    requestAnimationFrame(() => {
+      content.style.height = content.scrollHeight + "px";
+      content.style.opacity = "1";
+      content.style.transform = "translateY(0) scale(1)";
+    });
+  }
+
+  function animateClose(content: HTMLElement): void {
+    content.style.height = content.scrollHeight + "px";
+
+    requestAnimationFrame(() => {
+      content.style.height = "0px";
+      content.style.opacity = "0";
+      content.style.transform = "translateY(-8px) scale(0.98)";
+    });
+  }
+
+  function updateContent(el: HTMLElement): void {
+    const type = el.dataset.type as DesignType;
+
+    el.style.transform = "scale(0.98)";
+    setTimeout(() => (el.style.transform = "scale(1)"), 120);
+
+    document.querySelectorAll(".accordion-item").forEach((item) => {
+      const element = item as HTMLElement;
+      const content = element.querySelector(".accordion-content") as HTMLElement | null;
+
+      if (element.classList.contains("active") && content) {
+        animateClose(content);
+      }
+
+      element.classList.remove("active");
+
+      const mobile = element.querySelector(".mobile-visual-container") as HTMLElement | null;
+      if (mobile) mobile.innerHTML = "";
+    });
+
+    const content = el.querySelector(".accordion-content") as HTMLElement | null;
+    if (!content) return;
+
+    el.classList.add("active");
+    animateOpen(content);
+
+    if (window.innerWidth >= 768) {
+      const container = document.getElementById("desktop-visual");
+      if (container) {
+        container.innerHTML = renderVisual(type);
+      }
+    } else {
+      const mobile = el.querySelector(".mobile-visual-container") as HTMLElement | null;
+      if (mobile) {
+        mobile.innerHTML = renderVisual(type, true);
+      }
+    }
+  }
+
+  document.querySelectorAll(".accordion-item").forEach((item) => {
+    const el = item as HTMLElement;
+    el.addEventListener("click", () => updateContent(el));
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const first = document.querySelector(".accordion-item") as HTMLElement | null;
+    if (!first) return;
+
+    const content = first.querySelector(".accordion-content") as HTMLElement | null;
+    if (content) animateOpen(content);
+
+    const container = document.getElementById("desktop-visual");
+    if (container) {
+      container.innerHTML = renderVisual("iphone");
+    }
+  });
+</script>

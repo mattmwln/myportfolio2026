@@ -47,6 +47,7 @@ const SocialMedia: React.FC = () => {
       ))}
     </motion.div>
   );
+  
 };
 
 export default SocialMedia;

@@ -2,21 +2,24 @@
 import Home from "../components/Home/Home.astro";
 import About from "../components/About/About.astro";
 import Projects from "../components/Projects/Projects.astro";
+
 import Skills from "../components/Skills/Skills.astro";
 import Experience from "../components/Experience/Experience.astro";
 import Footer from "../components/Footer/Footer.astro";
 import MainLayout from "../layouts/main-layout.astro";
 import DarkLayout from "../layouts/dark-layout.astro";
+import Design from "../components/Design/Design.astro";
 ---
 
 <MainLayout title="Rahmat Maulana - Frontend Developer">
   <Home />
   <About />
-  <Projects />
+  <Experience />
 </MainLayout>
 
 <DarkLayout>
   <Skills />
-  <Experience />
+  <Projects />
+  <Design />
   <Footer />
 </DarkLayout>

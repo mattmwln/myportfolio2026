@@ -1,54 +1,208 @@
 ---
-import myPhoto from "../../assets/images/me.png";
-import email from "../../assets/icons/social-media/gmail-light.svg";
-import twitter from "../../assets/icons/social-media/twitter.svg";
 import SocialMedia from "./SocialMedia";
-import { IconBrandX } from "@tabler/icons-react";
 ---
 
-<section id="contact" class="bg-gradient-to-br from-[#0e0e11] to-[#092a25] py-10">
-  <div class="max-w-7xl m-auto px-5 flex flex-col justify-between md:gap-0 gap-10 text-[#E2FBFF]">
-    <div class="flex flex-col gap-7">
-      <h2 class="md:text-5xl text-2xl md:font-bold font-semibold">👋 Let's get connected!</h2>
-      <div class="flex md:flex-row flex-col md:items-center gap-5">
-        <img
-          src={myPhoto}
-          alt="mattmwln"
-          decoding="async" 
-          loading="lazy"
-          class="md:w-40 w-24 rounded-2xl shadow-[0px_1px_5px_0px_#000]"
-        />
-        <div class="flex flex-col gap-4">
-          <h3 class="md:text-[24px] text-lg font-semibold">Contact me on:</h3>
-          <div class="flex flex-col gap-1.5">
-            <div class="flex items-center gap-2.5">
-              <img src={email} alt="gmail" decoding="async" loading="lazy" class="w-5" />
-              <p class="md:text-xl">rahmatmaulanapersonal@gmail.com</p>
+<footer id="footer" class="bg-white text-neutral-900 pt-32 pb-12 border-t border-neutral-200">
+  <div class="max-w-6xl mx-auto px-6 md:px-10">
+
+    <!-- TOP -->
+    <div class="flex flex-col lg:flex-row justify-between gap-20 mb-24">
+
+      <!-- LEFT -->
+      <div class="max-w-lg">
+
+        <!-- BRAND -->
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-11 h-11 bg-black rounded-2xl flex items-center justify-center text-white font-semibold text-sm">
+            RM
+          </div>
+          <span class="text-xl font-semibold tracking-tight">
+            Maulana<span class="text-neutral-400">.</span>
+          </span>
+        </div>
+
+        <!-- TITLE -->
+        <h2 class="text-4xl md:text-5xl font-semibold leading-tight mb-6">
+          Hubungi Saya
+        </h2>
+
+        <p class="text-neutral-500 mb-10">
+          Kirim pesan, saya akan merespons secepat mungkin.
+        </p>
+
+        <!-- FORM -->
+        <form id="contact-form" class="flex flex-col gap-4">
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="px-5 py-3 rounded-2xl border border-neutral-300 bg-neutral-50 focus:bg-white focus:ring-2 focus:ring-black/10 outline-none transition"
+            required
+          />
+
+          <textarea
+            name="message"
+            placeholder="Pesan"
+            rows="4"
+            class="px-5 py-3 rounded-2xl border border-neutral-300 bg-neutral-50 focus:bg-white focus:ring-2 focus:ring-black/10 outline-none resize-none transition"
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            class="bg-black text-white py-3 rounded-2xl font-medium hover:bg-neutral-800 transition-all duration-300 active:scale-[0.98]"
+          >
+            Kirim Pesan
+          </button>
+
+          <p class="text-xs text-neutral-400">
+            Tidak spam. Respon ±24 jam.
+          </p>
+        </form>
+
+        <!-- POPUP -->
+        <div id="success-popup"
+          class="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition">
+
+          <div class="bg-white rounded-3xl px-8 py-6 shadow-2xl text-center scale-90 transition">
+            <p class="font-medium text-neutral-800">Pesan terkirim</p>
+          </div>
+
+        </div>
+
+        <!-- SOCIAL -->
+        <div class="mt-10 opacity-80">
+          <SocialMedia client:load />
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="flex flex-col md:flex-row gap-20 text-sm">
+
+        <!-- CONTACT -->
+        <div>
+          <h4 class="text-xs tracking-widest text-neutral-400 mb-6 uppercase">
+            Kontak
+          </h4>
+
+          <div class="space-y-5">
+            <div>
+              <p class="text-neutral-400 text-xs mb-1">Email</p>
+              <p class="font-medium">maulanaaa.rahmat@gmail.com</p>
             </div>
-            <div class="h-[2px] bg-[#E2FBFF] md:w-auto w-64 md:block hidden"></div>
-            <button id="twitter-btn" class="flex items-center gap-2.5">
-              <IconBrandX className="text-[#E2FBFF] hover:text-white cursor-pointer" size={20} />
-              <p class="md:text-xl">@mattmwln</p>
-            </button>
+
+            <div>
+              <p class="text-neutral-400 text-xs mb-1">WhatsApp</p>
+              <a href="#" class="font-medium hover:opacity-60 transition">
+                +62 888888888
+              </a>
+            </div>
+
+            <div>
+              <p class="text-neutral-400 text-xs mb-1">Lokasi</p>
+              <p class="font-medium">Sumatera Selatan</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="pt-5 md:border-t md:border-t-zinc-100">
-        <div class="flex md:flex-row flex-col md:items-center justify-between gap-4">
-          <SocialMedia client:visible />
-          <span class="md:text-lg text-sm md:font-medium">
-            © <span class="date">2024</span>, by Rahmat Maulana</span
-          >
+        <!-- STATUS -->
+        <div>
+          <h4 class="text-xs tracking-widest text-neutral-400 mb-6 uppercase">
+            Status
+          </h4>
+
+          <div class="space-y-4">
+            <p class="flex items-center gap-2 text-neutral-500">
+              <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+              Available for work
+            </p>
+
+            <p class="text-neutral-500">
+              Fresh Graduate • Sistem Informasi
+            </p>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<script>
-  const twitterButton: HTMLElement = document.getElementById("twitter-btn")!;
 
-  twitterButton.addEventListener("click", () => {
-    window.location.href = "https://x.com/mattmwln";
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="border-t border-neutral-200 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-400">
+
+      <p>
+        © {new Date().getFullYear()} Rahmat Maulana
+      </p>
+
+      <p class="tracking-widest uppercase text-[10px]">
+        System Analyst • Frontend • Data
+      </p>
+
+    </div>
+
+  </div>
+</footer>
+
+<!-- EmailJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    const emailjs = window.emailjs;
+
+    if (!emailjs) {
+      console.error("EmailJS gagal load");
+      return;
+    }
+
+    emailjs.init("sAFjkfiUFMLR6HXee"); // ganti
+
+    const form = document.getElementById("contact-form");
+    const popup = document.getElementById("success-popup");
+
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm(
+        "service_qwr0ri1",   // ganti
+        "template_emo1iwu",  // ganti
+        form
+      ).then(
+        function (response) {
+          console.log("SUCCESS:", response);
+
+          form.reset();
+
+          if (popup) {
+            popup.classList.remove("opacity-0", "pointer-events-none");
+
+            const box = popup.querySelector("div");
+
+            if (box) {
+              box.classList.remove("scale-90");
+              box.classList.add("scale-100");
+            }
+
+            setTimeout(function () {
+              popup.classList.add("opacity-0", "pointer-events-none");
+
+              if (box) {
+                box.classList.remove("scale-100");
+                box.classList.add("scale-90");
+              }
+            }, 2000);
+          }
+        },
+        function (error) {
+          console.error("ERROR DETAIL:", error);
+          alert("Gagal mengirim: " + (error.text || "Cek console"));
+        }
+      );
+    });
   });
 </script>

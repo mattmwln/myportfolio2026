@@ -1,52 +1,74 @@
-# Vicky Herdiansyah Adri - Personal Website
+# 🚀 myportofolio2026 - Personal Website
 
-## Technologies used:
-[![My Skills](https://skillicons.dev/icons?i=astro,react,ts,tailwind)](https://skillicons.dev)
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=astro,react,ts,tailwind,framer" alt="My Skills" />
+  <br />
+  <p><strong>Modern, Fast, and Interactive Portfolio</strong></p>
+  <a href="https://mattmwln.my.id"><strong>Explore Live Demo »</strong></a>
+</div>
 
-## Getting Started
+---
 
-Follow the steps below to run this project on your machine.
+## 📌 Overview
+
+**myportofolio2026** adalah platform personal branding modern yang dirancang untuk menampilkan perjalanan profesional, portofolio proyek, dan keahlian teknis secara interaktif. Website ini dibangun dengan fokus pada performa dan pengalaman pengguna yang mulus.
+
+### ✨ Key Features
+* **High Performance:** Skor optimasi tinggi berkat arsitektur *Island Architecture* dari Astro.
+* **Fluid Animations:** UI yang hidup menggunakan Framer Motion.
+* **Type Safe:** Pengembangan yang lebih aman dan terukur dengan TypeScript.
+* **Fully Responsive:** Tampilan optimal di berbagai perangkat, dari smartphone hingga desktop.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+| :--- | :--- |
+| **Astro** | Framework utama untuk optimasi kecepatan & konten. |
+| **React** | Library untuk komponen UI yang interaktif. |
+| **TypeScript** | Memastikan kualitas kode tetap terjaga dan scalable. |
+| **TailwindCSS** | Styling utility-first untuk desain yang bersih dan modern. |
+| **Framer Motion** | Library animasi untuk micro-interactions. |
+
+---
+
+## 🚀 Getting Started
+
+Ikuti langkah mudah di bawah ini untuk menjalankan project di lingkungan lokal Anda.
 
 ### Prerequisites
+* **Node.js** (v18.x atau versi terbaru)
+* **npm** atau **Yarn**
 
-Make sure you have installed the following prerequisites before proceeding:
+### Installation & Development
 
-- [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/username/myportfolio2026.git](https://github.com/username/myportfolio2026.git)
+    cd myportfolio2026
+    ```
 
-## Installation
+2.  **Install dependencies**
+    ```bash
+    npm install
+    # atau
+    yarn install
+    ```
 
-1. Clone this repository to your local machine:
+3.  **Run Development Server**
+    ```bash
+    npm run dev
+    # atau
+    yarn dev
+    ```
 
-   ```git clone https://github.com/mattmwln/personal-website-2.0.git```
+4.  **Build for Production**
+    ```bash
+    npm run build
+    ```
 
-2. Navigate to the project directory:
+---
 
-   ```cd personal-website-2.0```
-3. Install all the required dependencies using npm or Yarn:
-   ````bash
-   npm install
-   # or
-   yarn
-   ````
-
-## Usage
-
-Start the Express server:
-
-````bash
-   npm run dev
-   # or
-   yarn dev
-   ````
-
-## ----------------------------------------------------------------------------------------
-- Figma Design: [Click here](https://www.figma.com/file/ZdY2aK5cHCDoDVzfEVnLsu/Website-2.0)
-- Link demo: https://mattmwln.my.id
-
-## Built With
-- [Astro](https://astro.build/) - Web framework for building content-driven websites
-- [React](https://react.dev/) - React library for building user interface
-- [TypeScript](https://www.typescriptlang.org/) - Programming language
-- [Tailwind](https://tailwindcss.com/) - Utility-first CSS framework
-- [Framer Motion](https://www.framer.com/motion/) - Powerful motion library for React
+<div align="center">
+<p>Built with ❤️ by <strong>Rahmat Maulana</strong> © 2026 All Rights Reserved.</p>

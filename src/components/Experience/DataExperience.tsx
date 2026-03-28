@@ -1,150 +1,59 @@
-import { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
+// src/data/DataExperience.ts
 
-import { dataExperience } from "../../constants";
+import type { Experience } from "../../types/experience";
 
-const DataExperience: React.FC = () => {
-  const ref = useRef(null);
+export const experiences: Experience[] = [
+  {
+    role: "Head of IT & Digital Media",
+    company: "Caktadent Team (PT Bukit Asam Tbk Project)",
+    period: "Sep 2025 - Present",
+    points: [
+      "Memimpin fungsi IT dalam proyek implementasi strategis PTBA.",
+      "Merancang platform website pendukung dan infrastruktur digital.",
+      "Menangani pengembangan frontend dan desain UI/UX interaktif."
+    ]
+  },
+  {
+    role: "Web Developer",
+    company: "PT Al-Faruq Export Indonesia",
+    period: "Aug 2024 - Aug 2025",
+    points: [
+      "Membangun website korporat untuk memperkuat branding internasional.",
+      "Implementasi desain responsif dan optimasi performa web.",
+      "Menjaga konsistensi identitas brand di platform digital."
+    ]
+  },
+  {
+    role: "System Analyst Intern",
+    company: "Kanwil DJBC SUMBAGTIM Palembang",
+    period: "Des 2024 - Jan 2025",
+    points: [
+      "Identifikasi proses bisnis dan kebutuhan sistem unit internal.",
+      "Merancang dokumentasi alur proses dan model sistem informasi.",
+      "Analisis data untuk referensi peningkatan efisiensi sistem."
+    ]
+  },
 
-  const isScroll = useInView(ref, { once: true });
-  const aboutContentControls = useAnimation();
-
-  const aboutContentVariants = {
-    hidden: { opacity: 0, x: -12 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { x: -50, opacity: 0 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 80,
-      },
-    },
-  };
-
-  useEffect(() => {
-    if (isScroll) {
-      aboutContentControls.start("visible");
-    }
-  }, [isScroll]);
-
-  return (
-    <motion.div
-      ref={ref}
-      animate={aboutContentControls}
-      initial="hidden"
-      variants={aboutContentVariants}
-      className="grid grid-cols-1 gap-12 mt-12"
-    >
-      {dataExperience.map(
-        ({
-          id,
-          logo_url,
-          pattern,
-          name,
-          description,
-          date,
-          position,
-          responsibilites,
-          first_color,
-          second_color,
-          desc_color,
-          position_color,
-          border_color,
-        }) => (
-          <div
-            key={id}
-            style={{
-              background: `linear-gradient(226deg, ${second_color} 0%, ${first_color} 100%)`,
-              border: `3px solid ${border_color}`,
-              position: "relative",
-            }}
-            className="md:rounded-xl rounded-lg"
-          >
-            <img
-              src={pattern}
-              decoding="async"
-              loading="lazy"
-              alt="pattern mattmwln"
-              className="xl:absolute hidden h-full w-80"
-            />
-            <motion.div variants={item} className="md:p-10 p-6">
-              <div className="flex xl:flex-row xl:gap-0 gap-5 flex-col items-start">
-                <div className="basis-[20%] flex xl:justify-center">
-                  <img
-                    src={logo_url}
-                    decoding="async"
-                    loading="lazy"
-                    alt="company logo"
-                    className={`mt-1 ${id === 0 || id === 1 ? "md:w-auto w-28" : "md:w-auto w-10"}`}
-                  />
-                </div>
-                <div className="flex flex-col gap-5 xl:ml-7 basis-[80%]">
-                  <div className="flex flex-col xl:gap-1 items-start">
-                    <h3 className="xl:text-[40px] md:text-3xl text-2xl font-semibold">{name}</h3>
-                    <p
-                      style={{
-                        color: desc_color,
-                        fontSize: "20px",
-                      }}
-                      className="xl:mt-0 mt-2"
-                    >
-                      {description}
-                    </p>
-                    <p className="text-lg font-medium mt-2.5">{date}</p>
-                  </div>
-                  <div className="md:hidden flex justify-start">
-                    <p
-                      style={{
-                        background: position_color,
-                      }}
-                      className="md:px-7 px-5 md:py-4 py-3 text-center text-sm rounded-lg"
-                    >
-                      {position}
-                    </p>
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <h3 className="md:text-2xl text-xl">The responsibilities include:</h3>
-                    <ul className="flex flex-col gap-3 ml-4">
-                      {responsibilites.map((data, index) => (
-                        <li key={index} className="md:text-base text-sm list-disc">
-                          {data}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="md:absolute hidden right-0 md:flex justify-end mt-10 mr-10">
-                  <p
-                    style={{
-                      padding: "16px 28px",
-                      background: position_color,
-                      textAlign: "center",
-                      fontSize: "14px",
-                      borderRadius: "8px",
-                    }}
-                  >
-                    {position}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )
-      )}
-    </motion.div>
-  );
-};
-
-export default DataExperience;
+  // 🔥 tambahan (hidden awal)
+  {
+    role: "Digital Marketing",
+    company: "GAOTek Inc",
+    period: "Mar 2024 - Jun 2024",
+    points: [
+      "Berkolaborasi dengan Senior Leader (SL) dan Assistant Senior Leader (ASL) dalam mengembangkan desain visual yang mendukung kebutuhan pemasaran digital perusahaan.",
+      "Melakukan revisi desain berdasarkan feedback untuk memastikan kesesuaian dengan standar branding dan tujuan marketing.",
+      "Berpartisipasi dalam rapat tim untuk memberikan panduan visual serta teknik desain yang sesuai dengan kebutuhan kampanye digital."
+    ]
+  },
+  {
+    role: "Graphic Design",
+    company: "Dole Indonesia",
+    period: "Okt 2023 - Mar 2024",
+    points: [
+      "Berkolaborasi secara intens dengan tim copywriting untuk memastikan konten desain yang dibuat relevan dan efektif.",
+      "Berpengalaman bekerja sama dengan tim marketing dalam menghasilkan materi promosi yang menarik dan informatif.",
+      "Menjaga kualitas desain dengan melakukan revisi berdasarkan feedback serta analisis performa.",
+      "Menggunakan berbagai tools desain seperti Adobe Creative Suite (Photoshop, Illustrator) untuk meningkatkan kualitas dan variasi desain."
+    ]
+  }
+];

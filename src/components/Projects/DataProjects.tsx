@@ -1,119 +1,62 @@
-import { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { dataProjectss } from "../../constants";
-import { IconEye } from '@tabler/icons-react';  // Mengganti dengan ikon mata (eye icon)
+import reactLogo from "../../assets/icons/tech-stack/react.svg";
+import tailwindLogo from "../../assets/icons/tech-stack/tailwind.svg";
+import nextjsLogo from "../../assets/icons/tech-stack/nextjs.svg";
+import nodejsLogo from "../../assets/icons/tech-stack/nodejs.svg";
+import javascriptLogo from "../../assets/icons/tech-stack/javascript.svg";
+import typescriptLogo from "../../assets/icons/tech-stack/typescript.svg";
+import viteLogo from "../../assets/icons/tech-stack/vite.svg";
+import figmaLogo from "../../assets/icons/tech-stack/figma.svg";
+import htmlLogo from "../../assets/icons/tech-stack/html.png";
+import cssLogo from "../../assets/icons/tech-stack/css.png";
+import phpLogo from "../../assets/icons/tech-stack/php.png";
+import astroLogo from "../../assets/icons/tech-stack/astro.svg";
+import sqlLogo from "../../assets/icons/tech-stack/sql.png";
+import datminLogo from "../../assets/icons/tech-stack/datamining.png";
+import tableauLogo from "../../assets/icons/tech-stack/tableau.png";
+import psLogo from "../../assets/icons/tech-stack/illustrator.png";
+import aiLogo from "../../assets/icons/tech-stack/photoshop.png";
+import canvaLogo from "../../assets/icons/tech-stack/canva.png";
+import wordLogo from "../../assets/icons/tech-stack/word.png";
+import teamLogo from "../../assets/icons/tech-stack/teamwork.png";
+import solvingLogo from "../../assets/icons/tech-stack/solving.png";
+import thinkingLogo from "../../assets/icons/tech-stack/thinking.png";
+import excelLogo from "../../assets/icons/tech-stack/excel.png";
+import caktadentLogo from "../../assets/icons/project/caktadent.png";
+import fattkaLogo from "../../assets/icons/project/fattka.png";
+import alfaruqLogo from "../../assets/icons/project/alfaruq.png";
 
-const DataProjects: React.FC = () => {
-  const ref = useRef(null);
-  const isScroll = useInView(ref, { once: false });
-  const aboutContentControls = useAnimation();
-
-  const dataProjectsVariants = {
-    hidden: { opacity: 0, y: 12 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.2,
-        duration: 0.5,
-        delay: 0.25,
-        type: "spring",
-        stiffness: 80,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { x: 12, opacity: 0 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-      },
-    },
-  };
-
-  useEffect(() => {
-    if (isScroll) {
-      aboutContentControls.start("visible");
-    }
-  }, [isScroll]);
-
-  return (
-    <motion.div
-      ref={ref}
-      animate={aboutContentControls}
-      initial="hidden"
-      variants={dataProjectsVariants}
-      className="grid md:grid-cols-2 md:gap-x-14 md:gap-y-8 gap-y-6 md:mt-14 mt-8"
-    >
-      {dataProjectss.map(({ id, img_url, logo, type, tech_stack_logo, navigate_url }) => (
-        <a
-          href={navigate_url}
-          key={id}
-          aria-disabled={"true"}
-          className="relative flex justify-center flex-col p-4 gap-3 bg-[#18181b] drop-shadow-sm hover:drop-shadow-md hover:scale-[1.010] cursor-pointer md:rounded-xl rounded-md transition-all duration-150 ease-in group"
-          style={{ outline: '0.1px solid #252528' }}
-        >
-          <div className="relative overflow-hidden rounded-md">
-            <motion.img
-              variants={item}
-              src={img_url}
-              className="rounded-md"
-              alt="projects mattmwln"
-              whileHover={{ filter: "grayscale(100%) blur(10px)" }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.div
-              className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-80 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              style={{
-                backdropFilter: 'blur(10px)',  // Efek blur untuk memberi kesan glassmorphism
-                WebkitBackdropFilter: 'blur(10px)',  // Untuk mendukung browser Webkit seperti Safari
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#27a589',
-              }}
-            >
-              <IconEye
-                size={32}  // Ukuran ikon mata
-                stroke={2}  // Ketebalan stroke ikon
-                color="#27a589"  // Warna ikon
-                style={{ transition: 'color 0.3s ease' }}  // Transisi warna ikon saat hover
-              />
-            </motion.div>
-          </div>
-          <div className="flex flex-col gap-2.5 items-start">
-            <img
-              src={logo}
-              alt="logo project mattmwln"
-              decoding="async"
-              loading="lazy"
-              className={`object-cover ${id === 0 ? "md:w-8 w-8" : id === 2 ? "w-6" : "md:w-8 w-8" }`}
-            />
-            <div className="flex items-center gap-1">
-              <p className="md:text-base text-xs">{type}</p>
-              <div className="flex md:gap-4 gap-2 items-center">
-                {tech_stack_logo.map((data, index) => (
-                  <img
-                    key={index}
-                    src={data}
-                    decoding="async"
-                    loading="lazy"
-                    alt="tech stack logo mattmwln"
-                    className="md:w-[26px] w-5 object-contain aspect-[4/3]"
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </a>
-      ))}
-    </motion.div>
-  );
-};
-
-export default DataProjects;
+export const DATA_PROJECTS = [
+  {
+    id: 1,
+    title: "Caktadent Ecosystem",
+    category: "Company Project",
+    img_url: caktadentLogo,
+    logo: reactLogo,
+    tech_stack_logo: [reactLogo, tailwindLogo, viteLogo, typescriptLogo],
+    navigate_url: "https://github.com/mattmwln/Caktadent",
+    award: "Top 3 Achievement",
+    description: "Website Caktadent dibuat sebagai platform digital untuk memperkenalkan profil dan kegiatan tim Caktadent. Saya bertugas sebagai pengembang web, membuat tampilan yang responsif dan menyajikan informasi dengan jelas dan modern di berbagai perangka."
+  },
+  {
+    id: 2,
+    title: "PT Al-Faruq Export",
+    category: "Branding & Web",
+    img_url: alfaruqLogo,
+    logo: nextjsLogo,
+    tech_stack_logo: [nextjsLogo, nodejsLogo, tailwindLogo, figmaLogo],
+    navigate_url: "#",
+    award: null,
+    description: "Website PT Alfaruq Export Indonesia dibuat sebagai platform untuk branding perusahaan dan menampilkan produk unggulan seperti kopi, kelapa, dan teh ke pasar global."
+  },
+  {
+    id: 3,
+    title: "PT Fattka",
+    category: "Client Project",
+    img_url: fattkaLogo,
+    logo: fattkaLogo,
+    tech_stack_logo: [reactLogo, tailwindLogo, viteLogo, javascriptLogo],
+    navigate_url: "https://pt-fattka.vercel.app/",
+    award: null,
+    description: "Website PT Fattka dibuat sebagai platform digital untuk memperkenalkan perusahaan dan menampilkan produk farmasi ke audiens lebih luas. Fokusnya pada penyajian informasi produk yang jelas dengan tampilan modern, responsif, dan ramah pengguna agar mudah diakses di berbagai perangkat.."
+  },
+];
