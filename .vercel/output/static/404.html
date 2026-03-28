@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" class="astro-ZETDM5MD">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <script type="module" src="https://cdn.tailwindcss.com"></script>
+    
+  <link rel="stylesheet" href="/_astro/404.f290c4de.css" />
+<link rel="stylesheet" href="/_astro/404.960eeac5.css" /></head>
+  <body class="astro-ZETDM5MD">
+    <main class="astro-ZETDM5MD">
+      <div class="astro-ZETDM5MD">
+        <h1 class="astro-ZETDM5MD">404</h1>
+        <h2 class="astro-ZETDM5MD">Page Not Found</h2>
+        <p class="astro-ZETDM5MD">Oops! Pulanglah alamatnya tidak ada disini.</p>
+        <a href="/" class="btn-apple inline-block astro-ZETDM5MD">Balek Bae</a>
+      </div>
+    </main>
+
+    <script lang="ts">
+      // Disable right-click & DevTools shortcuts
+      const handleContextMenu = (e) => e.preventDefault();
+      const handleKeyDown = (e) => {
+        if (
+          e.key === 'F12' ||
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) ||
+          (e.ctrlKey && e.key === 'U')
+        ) {
+          e.preventDefault();
+        }
+      };
+
+      document.addEventListener("contextmenu", handleContextMenu);
+      document.addEventListener("keydown", handleKeyDown);
+
+      window.addEventListener("unload", () => {
+        document.removeEventListener("contextmenu", handleContextMenu);
+        document.removeEventListener("keydown", handleKeyDown);
+      });
+    </script>
+  </body>
+</html>

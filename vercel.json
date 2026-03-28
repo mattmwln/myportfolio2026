@@ -1,0 +1,5 @@
+{
+  "functions": {
+    "functions/render.func/**/*.js": { "runtime": "nodejs20.x" }
+  }
+}
