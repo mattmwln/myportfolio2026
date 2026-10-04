@@ -251,6 +251,5 @@ memeriksa code block/URL panjang; serta HTTP 404 untuk slug tidak ada dan draft.
 Embed dicek tidak menghasilkan iframe sebelum klik, lalu muncul setelah klik.
 Hydration error navbar dari CSS dalam React diperbaiki dengan stylesheet
 `src/styles/navigation.css`; pemeriksaan browser ulang tidak menemukan page error.
-File output Vercel yang terlacak sejak awal dikembalikan setelah validasi untuk
-menjaga perubahan sumber terpisah dari artifact build. Build ulang sebelum
-menjalankan validator default atau deployment lokal.
+Output Vercel di `.vercel/` adalah hasil build dan tidak disimpan di Git.
+Jalankan build sebelum validator default atau deployment lokal.

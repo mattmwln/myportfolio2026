@@ -22,4 +22,4 @@ pnpm-debug.log*
 
 .env.*
 !.env.example
-.vercel/output/
+.vercel/
