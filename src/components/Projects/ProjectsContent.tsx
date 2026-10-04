@@ -1,6 +1,6 @@
 import type React from "react";
 import { motion } from "framer-motion";
-import  DATA_PROJECTS  from "./DataProjects";
+import DATA_PROJECTS from "./DataProjects";
 import { IconEye } from "@tabler/icons-react";
 
 const cardVariants = {
@@ -11,15 +11,14 @@ const cardVariants = {
 const ProjectsContent: React.FC = () => {
   return (
     <motion.div
-      initial="hidden"
+      initial={false}
       whileInView="visible"
       viewport={{ once: true }}
       className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 xl:px-24 grid grid-cols-1 md:grid-cols-3 gap-10 mt-14"
     >
       {DATA_PROJECTS.map((project) => (
-        <motion.a
+        <motion.article
           key={project.id}
-          href={project.navigate_url}
           variants={cardVariants}
           className="group relative flex flex-col bg-gray-50/70 backdrop-blur-[15px] border border-gray-200 rounded-3xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.03] transition-all duration-500"
         >
@@ -27,6 +26,10 @@ const ProjectsContent: React.FC = () => {
           <div className="relative h-64 md:h-72 overflow-hidden rounded-t-3xl">
             <img
               src={project.img_url}
+              loading="lazy"
+              decoding="async"
+              width={640}
+              height={480}
               alt={project.title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
@@ -45,11 +48,15 @@ const ProjectsContent: React.FC = () => {
             <h3 className="text-xl md:text-2xl font-bold mb-1 text-gray-900 group-hover:text-gray-700 transition-colors">
               {project.title}
             </h3>
-            <span className="text-sm text-gray-600 mb-2">{project.category}</span>
+            <span className="text-sm text-gray-600 mb-2">
+              {project.category}
+            </span>
 
             {/* Deskripsi perusahaan */}
             {project.description && (
-              <p className="text-sm text-gray-500 mb-4">{project.description}</p>
+              <p className="text-sm text-gray-500 mb-4">
+                {project.description}
+              </p>
             )}
 
             {/* Tech Stack */}
@@ -65,7 +72,11 @@ const ProjectsContent: React.FC = () => {
                   >
                     <img
                       src={logo}
-                      alt="tech stack logo"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      width={24}
+                      height={24}
                       className="w-6 h-6 object-contain mb-1"
                     />
                     <span className="text-[9px] text-gray-700">
@@ -76,14 +87,20 @@ const ProjectsContent: React.FC = () => {
               </div>
             </div>
 
-            <a
-              href={project.navigate_url}
-              className="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-900/10 text-gray-900 rounded-xl font-semibold text-sm hover:bg-gray-900/20 transition-all"
-            >
-              View Project
-            </a>
+            {project.navigate_url ? (
+              <a
+                href={project.navigate_url}
+                className="mt-6 inline-flex items-center justify-center gap-2 px-4 py-2 bg-gray-900/10 text-gray-900 rounded-xl font-semibold text-sm hover:bg-gray-900/20 transition-all"
+              >
+                Lihat {project.title}
+              </a>
+            ) : (
+              <span className="mt-6 text-sm text-gray-500">
+                Tautan publik belum tersedia
+              </span>
+            )}
           </div>
-        </motion.a>
+        </motion.article>
       ))}
     </motion.div>
   );

@@ -1,0 +1,142 @@
+---
+import type { BlogPost } from "../../lib/blog";
+import {
+  getPublishedPosts,
+  relatedPosts,
+  formatDate,
+  dateValue,
+  getCover,
+} from "../../lib/blog";
+import BlogLayout from "../../layouts/blog-layout.astro";
+import PostCard from "../../components/Blog/PostCard.astro";
+import OptionalEmbed from "../../components/Blog/OptionalEmbed.astro";
+import { person } from "../../data/person";
+export async function getStaticPaths() {
+  return (await getPublishedPosts()).map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+interface Props {
+  post: BlogPost;
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+const cover = await getCover(post.data.cover);
+const related = relatedPosts(post, await getPublishedPosts());
+---
+
+<BlogLayout
+  title={`${post.data.title} — ${person.name}`}
+  description={post.data.description}
+  article={post.data}
+  cover={cover}
+>
+  <nav aria-label="Breadcrumb" class="text-sm text-neutral-500 mb-10">
+    <ol class="flex flex-wrap gap-x-2 gap-y-1">
+      <li>
+        <a href="/" class="hover:underline">Home</a><span aria-hidden="true">
+          /</span
+        >
+      </li>
+      <li>
+        <a href="/blog/" class="hover:underline">Blog</a><span
+          aria-hidden="true"
+        >
+          /</span
+        >
+      </li>
+      <li aria-current="page" class="break-words">{post.data.title}</li>
+    </ol>
+  </nav>
+  <article class="max-w-[70ch] mx-auto min-w-0">
+    <header class="mb-10">
+      <p class="text-xs uppercase tracking-widest text-neutral-500 mb-4">
+        {post.data.category}
+      </p>
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-black leading-tight break-words"
+      >
+        {post.data.title}
+      </h1>
+      <p class="mt-6 text-lg text-neutral-600 leading-relaxed">
+        {post.data.description}
+      </p>
+      <div class="mt-6 text-sm text-neutral-500 flex flex-wrap gap-x-4 gap-y-2">
+        <a href="/#profile" rel="author" class="font-semibold text-neutral-900"
+          >{person.name}</a
+        >
+        <time datetime={dateValue(post.data.publishedAt)}
+          >{formatDate(post.data.publishedAt)}</time
+        >
+        {
+          post.data.updatedAt && (
+            <span>
+              Diperbarui{" "}
+              <time datetime={dateValue(post.data.updatedAt)}>
+                {formatDate(post.data.updatedAt)}
+              </time>
+            </span>
+          )
+        }
+      </div>
+      {
+        post.data.tags.length > 0 && (
+          <ul
+            aria-label="Tag"
+            class="mt-5 flex flex-wrap gap-2 text-xs text-neutral-600"
+          >
+            {post.data.tags.map((tag) => (
+              <li class="px-3 py-1 rounded-full bg-neutral-100">{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+    {
+      cover && (
+        <img
+          src={cover.src}
+          alt={cover.alt}
+          width={cover.width}
+          height={cover.height}
+          decoding="async"
+          class="w-full h-auto rounded-3xl mb-10"
+        />
+      )
+    }
+    <div class="blog-prose"><Content /></div>
+    {
+      post.data.sourceUrl && (
+        <aside class="mt-10 border-t border-neutral-200 pt-6">
+          <p class="text-sm text-neutral-500 mb-2">Posting terkait</p>
+          <a
+            href={post.data.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-semibold underline underline-offset-4"
+          >
+            {post.data.sourceLabel}{" "}
+            <>
+              <span aria-hidden="true">↗</span>
+              <span class="sr-only"> (tab baru)</span>
+            </>
+          </a>
+        </aside>
+      )
+    }
+    {post.data.embed && <OptionalEmbed embed={post.data.embed} />}
+  </article>
+  {
+    related.length > 0 && (
+      <section class="mt-20 border-t border-neutral-200 pt-12">
+        <h2 class="text-3xl font-bold mb-8">Tulisan terkait</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {related.map((item) => (
+            <PostCard post={item} headingLevel={3} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BlogLayout>

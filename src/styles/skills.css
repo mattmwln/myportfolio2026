@@ -1,0 +1,30 @@
+#skills .skills-background {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#skills .skills-overlay {
+  background: linear-gradient(90deg, #03030324, #0303033d 48%, #03030324);
+}
+
+#skills .skills-feature-card,
+#skills .skills-group-card {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, #0e0909e8, #080808e3 65%, #180808e8)
+      padding-box,
+    linear-gradient(135deg, #f0443980, #ffffff29 36%, #ffffff21 70%, #d8262080)
+      border-box;
+  box-shadow: 0 18px 55px #0009, 0 0 25px #df241a29, inset 0 1px 0 #ffffff12;
+}
+
+#skills .skills-feature-card:hover,
+#skills .skills-group-card:hover {
+  box-shadow: 0 20px 60px #000a, 0 0 32px #e3221b66, inset 0 1px 0 #ffffff1c;
+}
+
+@media (max-width: 767px) {
+  #skills .skills-background {
+    background-position: 42% center;
+  }
+}

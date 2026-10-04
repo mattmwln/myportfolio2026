@@ -1,3 +1,4 @@
+import { socialProfiles, socialEmail } from "../../data/person";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
@@ -9,22 +10,22 @@ const dataSocialMedia = [
   {
     id: 0,
     icon: IconBrandLinkedin,
-    url: "https://linkedin.com/in/mattmwln",
+    url: socialProfiles[0].url,
   },
   {
     id: 1,
     icon: IconBrandInstagram,
-    url: "https://instagram.com/mattmwln",
+    url: socialProfiles[1].url,
   },
   {
     id: 2,
     icon: IconBrandGithub,
-    url: "https://github.com/mattmwln",
+    url: socialProfiles[2].url,
   },
   {
     id: 3,
     icon: IconMail,
-    url: "mailto:mattmwln@gmail.com",
+    url: `mailto:${socialEmail}`,
   },
 ];
 
@@ -35,13 +36,14 @@ const SocialMedia = () => {
         <a
           key={id}
           href={url}
+          aria-label={socialProfiles[id]?.name ?? "Email Rahmat Maulana"}
           target="_blank"
           rel="noreferrer"
           className="p-3 rounded-xl bg-white/5 hover:bg-blue-600 transition-all duration-300 group"
         >
           <Icon
             size={20}
-            className="text-[#E2FBFF] group-hover:text-white transition-colors"
+            className="text-neutral-700 group-hover:text-white transition-colors"
           />
         </a>
       ))}

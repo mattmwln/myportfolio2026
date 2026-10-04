@@ -14,22 +14,23 @@
 **myportofolio2026** adalah platform personal branding modern yang dirancang untuk menampilkan perjalanan profesional, portofolio proyek, dan keahlian teknis secara interaktif. Website ini dibangun dengan fokus pada performa dan pengalaman pengguna yang mulus.
 
 ### ✨ Key Features
-* **High Performance:** Skor optimasi tinggi berkat arsitektur *Island Architecture* dari Astro.
-* **Fluid Animations:** UI yang hidup menggunakan Framer Motion.
-* **Type Safe:** Pengembangan yang lebih aman dan terukur dengan TypeScript.
-* **Fully Responsive:** Tampilan optimal di berbagai perangkat, dari smartphone hingga desktop.
+
+- **High Performance:** Skor optimasi tinggi berkat arsitektur _Island Architecture_ dari Astro.
+- **Fluid Animations:** UI yang hidup menggunakan Framer Motion.
+- **Type Safe:** Pengembangan yang lebih aman dan terukur dengan TypeScript.
+- **Fully Responsive:** Tampilan optimal di berbagai perangkat, dari smartphone hingga desktop.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-| :--- | :--- |
-| **Astro** | Framework utama untuk optimasi kecepatan & konten. |
-| **React** | Library untuk komponen UI yang interaktif. |
-| **TypeScript** | Memastikan kualitas kode tetap terjaga dan scalable. |
-| **TailwindCSS** | Styling utility-first untuk desain yang bersih dan modern. |
-| **Framer Motion** | Library animasi untuk micro-interactions. |
+| Technology        | Purpose                                                    |
+| :---------------- | :--------------------------------------------------------- |
+| **Astro**         | Framework utama untuk optimasi kecepatan & konten.         |
+| **React**         | Library untuk komponen UI yang interaktif.                 |
+| **TypeScript**    | Memastikan kualitas kode tetap terjaga dan scalable.       |
+| **TailwindCSS**   | Styling utility-first untuk desain yang bersih dan modern. |
+| **Framer Motion** | Library animasi untuk micro-interactions.                  |
 
 ---
 
@@ -38,18 +39,21 @@
 Ikuti langkah mudah di bawah ini untuk menjalankan project di lingkungan lokal Anda.
 
 ### Prerequisites
-* **Node.js** (v18.x atau versi terbaru)
-* **npm** atau **Yarn**
+
+- **Node.js** (v18.x atau versi terbaru)
+- **npm** atau **Yarn**
 
 ### Installation & Development
 
 1.  **Clone the repository**
+
     ```bash
     git clone [https://github.com/username/myportfolio2026.git](https://github.com/username/myportfolio2026.git)
     cd myportfolio2026
     ```
 
 2.  **Install dependencies**
+
     ```bash
     npm install
     # atau
@@ -57,6 +61,7 @@ Ikuti langkah mudah di bawah ini untuk menjalankan project di lingkungan lokal A
     ```
 
 3.  **Run Development Server**
+
     ```bash
     npm run dev
     # atau
@@ -72,3 +77,12 @@ Ikuti langkah mudah di bawah ini untuk menjalankan project di lingkungan lokal A
 
 <div align="center">
 <p>Built with ❤️ by <strong>Rahmat Maulana</strong> © 2026 All Rights Reserved.</p>
+
+## Blog dan identitas publik
+
+Rahmat Maulana (Mattmwln) adalah lulusan Sistem Informasi Universitas Sriwijaya
+yang saat ini bekerja di UBP Keramasan dalam bidang Visualisasi Data.
+
+Blog statis tersedia di `/blog/`, dengan artikel Markdown dari
+`src/content/blog/`. Draft tidak diterbitkan. Panduan menulis, source attribution
+Instagram/LinkedIn/GitHub, cover lokal, RSS, dan SEO tersedia di [docs/SEO.md](docs/SEO.md).

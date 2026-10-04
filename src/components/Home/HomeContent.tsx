@@ -1,29 +1,12 @@
+import { currentWork } from "../../data/person";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { renderCanvas } from "../Custom/renderCanvas";
 
 const HomeContent = () => {
   useEffect(() => {
-    renderCanvas();
-
-    const handleContextMenu = (e: MouseEvent) => e.preventDefault();
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (
-        e.keyCode === 123 || 
-        (e.ctrlKey && e.shiftKey && e.keyCode === 'I'.charCodeAt(0)) ||
-        (e.ctrlKey && e.shiftKey && e.keyCode === 'J'.charCodeAt(0)) ||
-        (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      renderCanvas();
   }, []);
 
   const containerHomeVariants = {
@@ -58,42 +41,48 @@ const HomeContent = () => {
   return (
     <>
       <motion.div
-        initial="hidden"
+        initial={false}
         animate="visible"
         variants={containerHomeVariants}
         className="mt-8 flex flex-col items-center"
       >
-        <h2
+        <h1
           className="font-extrabold xl:text-5xl md:text-4xl text-xl"
           style={{ color: "#111111" }} // Apple style heading
         >
           Hello, I’m Rahmat Maulana.
-        </h2>
+        </h1>
 
         <div className="relative -z-10">
-          <h1
+          <p
             className="mx-2 xl:text-[82px] md:text-[70px] text-[32px] font-bold tracking-tight"
             style={{ color: "#333333" }} // Apple style sub-heading
           >
             Digital Product Dev.
-          </h1>
+          </p>
         </div>
       </motion.div>
 
       <motion.p
-        initial="hidden"
+        initial={false}
         animate="visible"
         variants={descriptionHomeVariants}
         className="md:text-[20px] max-w-3xl text-center md:leading-10 leading-6"
         style={{ color: "#666666" }} // Apple style body text
       >
-        <span className="font-semibold" style={{ color: "#000000" }}>Berpengalaman </span>
-        dalam mengembangkan solusi digital melalui analisis sistem dan desain yang terarah, dengan fokus pada pengalaman pengguna serta kualitas implementasi.
+        Dikenal sebagai Mattmwln, saat ini bekerja di {currentWork.name} dalam
+        bidang{" "}
+        <span className="font-semibold" style={{ color: "#000000" }}>
+          {currentWork.field.toLowerCase()}
+        </span>
+        . Berpengalaman dalam pengembangan web, analisis sistem, dan desain
+        UI/UX.
       </motion.p>
 
       <canvas
         className="bg-skin-base pointer-events-none absolute inset-0"
         id="canvas"
+        aria-hidden="true"
       ></canvas>
     </>
   );

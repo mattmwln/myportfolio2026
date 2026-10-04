@@ -1,0 +1,74 @@
+---
+import {
+  type BlogPost,
+  postPath,
+  dateValue,
+  formatDate,
+  getCover,
+} from "../../lib/blog";
+interface Props {
+  post: BlogPost;
+  headingLevel?: 2 | 3;
+}
+const { post, headingLevel = 2 } = Astro.props;
+const Heading = headingLevel === 3 ? "h3" : "h2";
+const cover = await getCover(post.data.cover);
+---
+
+<article
+  class="rounded-3xl border border-neutral-200 bg-neutral-50 overflow-hidden flex flex-col min-w-0"
+>
+  {
+    cover && (
+      <img
+        src={cover.src}
+        alt={cover.alt}
+        width={cover.width}
+        height={cover.height}
+        loading="lazy"
+        decoding="async"
+        class="aspect-[1200/630] w-full object-cover"
+      />
+    )
+  }
+  <div class="p-7 flex flex-col flex-1 gap-4">
+    <p class="text-xs tracking-widest uppercase text-neutral-500">
+      {post.data.category}
+    </p>
+    <Heading class="text-2xl font-bold text-neutral-900 break-words">
+      <a href={postPath(post)} class="hover:underline">{post.data.title}</a>
+    </Heading>
+    <p class="text-neutral-600 leading-relaxed break-words">
+      {post.data.description}
+    </p>
+    <div class="text-sm text-neutral-500 mt-auto">
+      <time datetime={dateValue(post.data.publishedAt)}
+        >{formatDate(post.data.publishedAt)}</time
+      >
+      {
+        post.data.updatedAt && (
+          <p class="mt-1">
+            Diperbarui{" "}
+            <time datetime={dateValue(post.data.updatedAt)}>
+              {formatDate(post.data.updatedAt)}
+            </time>
+          </p>
+        )
+      }
+    </div>
+    {
+      post.data.tags.length > 0 && (
+        <ul
+          aria-label="Tag"
+          class="flex flex-wrap gap-2 text-xs text-neutral-600"
+        >
+          {post.data.tags.map((tag) => (
+            <li class="px-3 py-1 rounded-full bg-white border border-neutral-200">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</article>

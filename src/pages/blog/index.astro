@@ -1,0 +1,46 @@
+---
+import BlogLayout from "../../layouts/blog-layout.astro";
+import PostCard from "../../components/Blog/PostCard.astro";
+import { getPublishedPosts, postPath } from "../../lib/blog";
+const posts = await getPublishedPosts();
+---
+
+<BlogLayout
+  title="Blog Rahmat Maulana — Catatan Mattmwln"
+  description="Catatan Rahmat Maulana (Mattmwln) seputar teknologi, pengembangan web, visualisasi data, proyek, dan proses belajar."
+  collection
+  postUrls={posts.map((post) => new URL(postPath(post), Astro.site!).href)}
+>
+  <header class="max-w-2xl mb-14">
+    <p class="uppercase text-xs tracking-[0.3em] text-neutral-500 font-bold">
+      Catatan Mattmwln
+    </p>
+    <h1 class="text-4xl md:text-5xl font-black mt-4 mb-6">
+      Blog Rahmat Maulana
+    </h1>
+    <p class="text-lg text-neutral-600 leading-relaxed">
+      Catatan tentang teknologi, pengembangan web, visualisasi data, proyek, dan
+      proses belajar.
+    </p>
+  </header>
+  {
+    posts.length ? (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <div class="rounded-3xl bg-neutral-50 border border-neutral-200 p-8">
+        <h2 class="text-2xl font-bold mb-3">Tulisan sedang disiapkan</h2>
+        <p class="text-neutral-600">
+          Kunjungi kembali atau ikuti{" "}
+          <a href="/rss.xml" class="underline">
+            RSS blog
+          </a>{" "}
+          untuk membaca catatan terbaru.
+        </p>
+      </div>
+    )
+  }
+</BlogLayout>

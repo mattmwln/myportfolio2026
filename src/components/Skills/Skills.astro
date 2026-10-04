@@ -1,20 +1,21 @@
 ---
 import SkillsContent from "./SkillsContent";
+import backgroundSkills from "../../assets/background-mafia/background-skills.webp";
+import "../../styles/skills.css";
 ---
 
-<section id="skills" class="py-32 relative container mx-auto px-6">
-
-  <!-- HEADER -->
-  <div class="mb-16 text-center">
-    <span class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs">
-      Technical Mastery
-    </span>
-    <h2 class="text-4xl md:text-5xl font-black mt-3 text-gray-900">
-      Skills & Tools
-    </h2>
-    <div class="w-12 h-1.5 bg-gray-300 mt-6 rounded-full mx-auto"></div>
+<section id="skills" class="relative isolate overflow-hidden bg-[#050505]">
+  <div
+    aria-hidden="true"
+    class="skills-background pointer-events-none absolute inset-0 z-0"
+    style={`background-image: url(${backgroundSkills});`}
+  >
+  </div>
+  <div
+    class="skills-overlay pointer-events-none absolute inset-0 z-[1]"
+    aria-hidden="true"
+  >
   </div>
 
-  <!-- CONTENT -->
   <SkillsContent client:visible />
 </section>

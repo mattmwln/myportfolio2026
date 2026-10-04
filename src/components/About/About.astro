@@ -1,13 +1,172 @@
 ---
 import AboutContent from "./AboutContent";
-// import AboutImage from "./AboutImage";
+import "../../styles/about.css";
+import backgroundAbout from "../../assets/background-mafia/background-about.webp";
 ---
 
-<section id="profile" class="flex justify-center w-full">
+<section
+  id="profile"
+  class="relative isolate w-full overflow-hidden bg-[#050505]"
+>
+  <!-- =====================================================
+       BACKGROUND IMAGE
+  ====================================================== -->
   <div
-    class="flex items-center md:flex-row flex-col justify-between md:gap-5 gap-10"
+    class="about-background absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+    style={`background-image: url(${backgroundAbout});`}
+  >
+  </div>
+
+  <!-- =====================================================
+       CINEMATIC GRADIENT
+  ====================================================== -->
+  <div
+    class="about-cinematic-overlay pointer-events-none absolute inset-0 z-[1]"
+  >
+  </div>
+
+  <!-- =====================================================
+       SUBTLE TEXTURE
+  ====================================================== -->
+  <div class="about-noise pointer-events-none absolute inset-0 z-[2]"></div>
+
+  <!-- =====================================================
+       LEFT RED AMBIENT GLOW
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute -left-40 top-[25%] z-[2] h-[520px] w-[520px] rounded-full bg-red-700/[0.14] blur-[150px]"
+  >
+  </div>
+
+  <!-- =====================================================
+       RIGHT RED AMBIENT GLOW
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute -right-48 top-[18%] z-[2] h-[580px] w-[580px] rounded-full bg-red-700/[0.10] blur-[165px]"
+  >
+  </div>
+
+  <!-- =====================================================
+       CENTER RED GLOW
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute left-1/2 top-[48%] z-[2] h-[300px] w-[500px] -translate-x-1/2 rounded-full bg-red-950/[0.10] blur-[150px]"
+  >
+  </div>
+
+  <!-- =====================================================
+       TOP DECORATIVE LINE
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute left-[17%] top-[9%] hidden h-px w-[240px] bg-gradient-to-r from-red-600/80 via-red-600/30 to-transparent lg:block"
+  >
+  </div>
+
+  <!-- =====================================================
+       RIGHT TOP DECORATION
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute right-[4%] top-[7%] hidden text-right lg:block"
+  >
+    <div class="mb-3 ml-auto h-10 w-px bg-red-600/60"></div>
+
+    <p
+      class="text-[8px] font-medium uppercase leading-[1.9] tracking-[0.3em] text-white/35"
+    >
+      Discipline<br />
+      Builds<br />
+      Freedom
+    </p>
+  </div>
+
+  <!-- =====================================================
+       RED STAR
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute right-[29%] top-[8%] hidden lg:block"
+  >
+    <div class="relative h-8 w-8">
+      <span
+        class="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-red-500/80"
+      ></span>
+
+      <span
+        class="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-red-500/80"
+      ></span>
+
+      <span
+        class="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-red-500 shadow-[0_0_24px_rgba(239,68,68,0.9)]"
+      ></span>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       CONTENT
+  ====================================================== -->
+  <div
+    class="relative z-10 mx-auto w-full max-w-[1280px] px-6 py-20 md:px-10 md:py-24 lg:px-14 lg:py-28"
   >
     <AboutContent client:visible />
-    <!-- <AboutImage client:visible /> -->
+  </div>
+
+  <!-- =====================================================
+       BOTTOM FADE
+  ====================================================== -->
+  <div
+    class="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-36 bg-gradient-to-t from-black/60 via-black/20 to-transparent"
+  >
   </div>
 </section>
+
+<style>
+  .about-cinematic-overlay {
+    background: radial-gradient(
+        circle at 10% 42%,
+        rgba(190, 0, 0, 0.2),
+        transparent 26%
+      ),
+      radial-gradient(circle at 88% 52%, rgba(140, 0, 0, 0.13), transparent 30%),
+      linear-gradient(
+        90deg,
+        rgba(3, 3, 3, 0.06) 0%,
+        rgba(3, 3, 3, 0.22) 30%,
+        rgba(3, 3, 3, 0.18) 55%,
+        rgba(3, 3, 3, 0.06) 100%
+      );
+  }
+
+  .about-noise {
+    opacity: 0.12;
+
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0.018) 1px,
+        transparent 1px
+      ),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+
+    background-size: 40px 40px;
+
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+  }
+
+  @media (max-width: 768px) {
+    .about-cinematic-overlay {
+      background: linear-gradient(
+          to bottom,
+          rgba(3, 3, 3, 0.38),
+          rgba(3, 3, 3, 0.28)
+        ),
+        radial-gradient(
+          circle at 50% 30%,
+          rgba(170, 0, 0, 0.16),
+          transparent 40%
+        );
+    }
+  }
+</style>

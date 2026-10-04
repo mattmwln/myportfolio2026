@@ -4,7 +4,6 @@ import { DATA_DESIGN } from "./DataDesign";
 
 <section class="py-32 bg-white">
   <div class="container mx-auto px-6">
-
     <!-- HEADER -->
     <div class="mb-16 text-center">
       <span class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs">
@@ -17,42 +16,70 @@ import { DATA_DESIGN } from "./DataDesign";
     </div>
 
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-16">
-
       <!-- LEFT -->
       <div class="w-full md:w-5/12 space-y-2">
-        {Object.entries(DATA_DESIGN).map(([key, item], index) => (
-          <div
-            class={`accordion-item border-b border-gray-200 pb-6 cursor-pointer ${index === 0 ? "active" : ""}`}
-            data-type={key}
-          >
-            <div class="flex items-center justify-between py-4">
+        {
+          Object.entries(DATA_DESIGN).map(([key, item], index) => (
+            <div
+              class={`accordion-item border-b border-gray-200 pb-6 cursor-pointer ${
+                index === 0 ? "active" : ""
+              }`}
+              data-type={key}
+            >
               <h3 class="text-2xl font-black text-gray-900">
-                {item.title}
+                <button
+                  type="button"
+                  class="flex w-full text-left items-center justify-between py-4"
+                  aria-expanded={index === 0}
+                  aria-controls={`design-${key}`}
+                >
+                  <span>{item.title}</span>
+
+                  <span class="chevron text-gray-400">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-width="2"
+                        d="M6 9l6 6 6-6"
+                      />
+                    </svg>
+                  </span>
+                </button>
               </h3>
 
-              <span class="chevron text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-width="2" d="M6 9l6 6 6-6"/>
-                </svg>
-              </span>
-            </div>
+              <div id={`design-${key}`} class="accordion-content">
+                <p class="text-sm text-gray-600 leading-relaxed mb-6 max-w-md">
+                  {item.description}
+                </p>
 
-            <div class="accordion-content">
-              <p class="text-sm text-gray-600 leading-relaxed mb-6 max-w-md">
-                {item.description}
-              </p>
-
-              <div class="mobile-visual-container block md:hidden"></div>
+                <div class="mobile-visual-container block md:hidden" />
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
 
       <!-- RIGHT -->
-      <div id="desktop-visual" class="hidden md:flex w-7/12 relative justify-center items-center min-h-[420px]"></div>
-
+      <div
+        id="desktop-visual"
+        class="hidden md:flex w-7/12 relative justify-center items-center min-h-[420px]"
+      >
+        <img
+          src={DATA_DESIGN.iphone.tabletImg}
+          alt={DATA_DESIGN.iphone.title}
+          width="1200"
+          height="900"
+          loading="lazy"
+          decoding="async"
+          class="w-full rounded-[2rem]"
+        />
+      </div>
     </div>
-
   </div>
 </section>
 
@@ -62,13 +89,11 @@ import { DATA_DESIGN } from "./DataDesign";
   }
 
   .accordion-content {
-    height: 0;
+    height: auto;
     overflow: hidden;
-    opacity: 0;
+    opacity: 1;
     transform: translateY(-8px) scale(0.98);
-    transition:
-      height 0.55s var(--spring),
-      opacity 0.35s ease,
+    transition: height 0.55s var(--spring), opacity 0.35s ease,
       transform 0.55s var(--spring);
   }
 
@@ -86,7 +111,7 @@ import { DATA_DESIGN } from "./DataDesign";
   }
 
   .device-shadow {
-    box-shadow: 0 40px 80px -20px rgba(0,0,0,0.15);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.15);
   }
 
   .visual-wrapper {
@@ -108,7 +133,7 @@ import { DATA_DESIGN } from "./DataDesign";
   }
 </style>
 
-<script >
+<script>
   import { DATA_DESIGN, type DesignType } from "./DataDesign";
 
   function renderVisual(type: DesignType, isMobile: boolean = false): string {
@@ -116,16 +141,22 @@ import { DATA_DESIGN } from "./DataDesign";
 
     return `
       <div class="visual-wrapper relative flex justify-center items-center w-full">
-        <div class="${isMobile ? 'w-[75%]' : 'w-[80%]'} aspect-[4/3] bg-black rounded-[2rem] p-2 device-shadow">
-          <div class="w-full h-full bg-cover bg-center rounded-[1.5rem]"
-            style="background-image:url('${data.tabletImg}')"></div>
+        <div class="${
+          isMobile ? "w-[75%]" : "w-[80%]"
+        } aspect-[4/3] bg-black rounded-[2rem] p-2 device-shadow">
+          <img src="${data.tabletImg}" alt="${
+      data.title
+    }" width="1200" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-[1.5rem]" />
         </div>
 
         ${
           data.showPhone
-            ? `<div class="${isMobile ? 'w-[30%] -ml-12 mt-8' : 'absolute w-[35%]'} aspect-[1/2] bg-black rounded-[2rem] p-1 device-shadow">
-                <div class="w-full h-full bg-cover bg-center rounded-[1.5rem]"
-                  style="background-image:url('${data.phoneImg}')"></div>
+            ? `<div class="${
+                isMobile ? "w-[30%] -ml-12 mt-8" : "absolute w-[35%]"
+              } aspect-[1/2] bg-black rounded-[2rem] p-1 device-shadow">
+                <img src="${
+                  data.phoneImg
+                }" alt="" width="600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-[1.5rem]" />
               </div>`
             : ""
         }
@@ -161,22 +192,30 @@ import { DATA_DESIGN } from "./DataDesign";
 
     document.querySelectorAll(".accordion-item").forEach((item) => {
       const element = item as HTMLElement;
-      const content = element.querySelector(".accordion-content") as HTMLElement | null;
+      const content = element.querySelector(
+        ".accordion-content"
+      ) as HTMLElement | null;
 
       if (element.classList.contains("active") && content) {
         animateClose(content);
       }
 
       element.classList.remove("active");
+      element.querySelector("button")?.setAttribute("aria-expanded", "false");
 
-      const mobile = element.querySelector(".mobile-visual-container") as HTMLElement | null;
+      const mobile = element.querySelector(
+        ".mobile-visual-container"
+      ) as HTMLElement | null;
       if (mobile) mobile.innerHTML = "";
     });
 
-    const content = el.querySelector(".accordion-content") as HTMLElement | null;
+    const content = el.querySelector(
+      ".accordion-content"
+    ) as HTMLElement | null;
     if (!content) return;
 
     el.classList.add("active");
+    el.querySelector("button")?.setAttribute("aria-expanded", "true");
     animateOpen(content);
 
     if (window.innerWidth >= 768) {
@@ -185,7 +224,9 @@ import { DATA_DESIGN } from "./DataDesign";
         container.innerHTML = renderVisual(type);
       }
     } else {
-      const mobile = el.querySelector(".mobile-visual-container") as HTMLElement | null;
+      const mobile = el.querySelector(
+        ".mobile-visual-container"
+      ) as HTMLElement | null;
       if (mobile) {
         mobile.innerHTML = renderVisual(type, true);
       }
@@ -194,19 +235,22 @@ import { DATA_DESIGN } from "./DataDesign";
 
   document.querySelectorAll(".accordion-item").forEach((item) => {
     const el = item as HTMLElement;
-    el.addEventListener("click", () => updateContent(el));
+    el.querySelector("button")?.addEventListener("click", () =>
+      updateContent(el)
+    );
   });
 
   window.addEventListener("DOMContentLoaded", () => {
-    const first = document.querySelector(".accordion-item") as HTMLElement | null;
+    const first = document.querySelector(
+      ".accordion-item"
+    ) as HTMLElement | null;
     if (!first) return;
 
-    const content = first.querySelector(".accordion-content") as HTMLElement | null;
-    if (content) animateOpen(content);
-
-    const container = document.getElementById("desktop-visual");
-    if (container) {
-      container.innerHTML = renderVisual("iphone");
-    }
+    document.querySelectorAll(".accordion-content").forEach((item) => {
+      const content = item as HTMLElement;
+      content.style.height = "0px";
+      content.style.opacity = "0";
+    });
+    updateContent(first);
   });
 </script>

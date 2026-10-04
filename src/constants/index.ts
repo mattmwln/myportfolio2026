@@ -1,3 +1,4 @@
+import { socialProfiles, socialEmail } from "../data/person";
 // =======================
 // IMPORT
 // =======================
@@ -10,7 +11,6 @@ import instagram from "../assets/icons/social-media/instagram.webp";
 
 // Types
 import type { LogoSocialMedia } from "../types/header";
-
 
 // Tech stack
 import nextjs from "../assets/icons/tech-stack/nextjs.svg";
@@ -25,12 +25,12 @@ import figma from "../assets/icons/tech-stack/figma.svg";
 import mongodb from "../assets/icons/tech-stack/mongodb.svg";
 import postgresql from "../assets/icons/tech-stack/postgresql.svg";
 
-
 // =======================
 // NAVBAR
 // =======================
 
 export const dataNavbar = [
+  { id: 4, navigate: "Blog", navigate_url: "/blog/", offset: 0 },
   {
     id: 0,
     navigate: "Profile",
@@ -57,7 +57,6 @@ export const dataNavbar = [
   },
 ];
 
-
 // =======================
 // SOCIAL MEDIA
 // =======================
@@ -66,25 +65,24 @@ export const dataLogoSocialMedia: LogoSocialMedia[] = [
   {
     id: 0,
     logo: linkedin,
-    navigate: "https://linkedin.com/in/mattmwln",
+    navigate: socialProfiles[0].url,
   },
   {
     id: 1,
     logo: instagram,
-    navigate: "https://instagram.com/mattmwln",
+    navigate: socialProfiles[1].url,
   },
   {
     id: 2,
     logo: github,
-    navigate: "https://github.com/mattmwln",
+    navigate: socialProfiles[2].url,
   },
   {
     id: 3,
     logo: email,
-    navigate: "mailto:mattmwln@gmail.com", // ✅ fix email
+    navigate: `mailto:${socialEmail}`, // ✅ fix email
   },
 ];
-
 
 // =======================
 // SKILLS (BEST PRACTICE)

@@ -1,14 +1,13 @@
 // IMPORT IMAGE (SESUAIKAN PATH)
-import himsiFeed from "../../assets/design/himsifeed.png";
-import caktadentFeed from "../../assets/design/caktadentfeed.png";
-import calonFeed from "../../assets/design/calonfeed.png";
+import himsiFeed from "../../assets/design/himsifeed.webp";
+import caktadentFeed from "../../assets/design/caktadentfeed.webp";
+import calonFeed from "../../assets/design/calonfeed.webp";
 
+import ipadMacTablet from "../../assets/icons/project/caktadent.webp";
+import ipadMacMac from "../../assets/icons/project/caktadent.webp";
 
-import ipadMacTablet from "../../assets/icons/project/caktadent.png";
-import ipadMacMac from "../../assets/icons/project/caktadent.png";
-
-import ipadWatchTablet from "../../assets/icons/project/caktadent.png";
-import ipadWatchWatch from "../../assets/icons/project/caktadent.png";
+import ipadWatchTablet from "../../assets/icons/project/caktadent.webp";
+import ipadWatchWatch from "../../assets/icons/project/caktadent.webp";
 
 export const DATA_DESIGN = {
   iphone: {

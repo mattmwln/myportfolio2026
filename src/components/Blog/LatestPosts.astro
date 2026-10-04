@@ -1,0 +1,39 @@
+---
+import { getPublishedPosts } from "../../lib/blog";
+import PostCard from "./PostCard.astro";
+const posts = (await getPublishedPosts()).slice(0, 3);
+---
+
+<section id="writing" class="py-24 px-6 bg-white text-neutral-900">
+  <div class="max-w-6xl mx-auto">
+    <div
+      class="mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-6"
+    >
+      <div>
+        <p
+          class="uppercase tracking-[0.3em] text-xs font-bold text-neutral-500"
+        >
+          Catatan & Pembelajaran
+        </p>
+        <h2 class="text-4xl md:text-5xl font-black mt-3">Tulisan Terbaru</h2>
+      </div>
+      <a href="/blog/" class="font-semibold underline underline-offset-4"
+        >Lihat semua tulisan</a
+      >
+    </div>
+    {
+      posts.length ? (
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {posts.map((post) => (
+            <PostCard post={post} headingLevel={3} />
+          ))}
+        </div>
+      ) : (
+        <p class="text-neutral-600">
+          Tulisan pertama sedang disiapkan. Kunjungi kembali untuk membaca
+          catatan terbaru.
+        </p>
+      )
+    }
+  </div>
+</section>

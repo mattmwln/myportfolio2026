@@ -1,0 +1,58 @@
+---
+interface Props {
+  embed: { url: string; title: string };
+}
+const { embed } = Astro.props;
+---
+
+<section
+  class="mt-10 border border-neutral-200 rounded-2xl p-6"
+  aria-label="Media terkait"
+>
+  <p class="text-sm text-neutral-600 mb-4">
+    Media eksternal hanya dimuat setelah Anda memilih untuk menampilkannya.
+  </p>
+  <button
+    type="button"
+    data-embed-url={embed.url}
+    data-embed-title={embed.title}
+    class="embed-button underline font-semibold">Tampilkan {embed.title}</button
+  >
+  <div class="embed-container"></div>
+  <noscript
+    ><p class="mt-3">
+      <a
+        href={embed.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline">Buka media terkait</a
+      >
+    </p></noscript
+  >
+</section>
+<script is:inline>
+  document.querySelectorAll(".embed-button").forEach((button) => {
+    button.addEventListener(
+      "click",
+      () => {
+        const frame = document.createElement("iframe");
+        frame.src = button.dataset.embedUrl;
+        frame.title = button.dataset.embedTitle;
+        frame.width = "1200";
+        frame.height = "675";
+        frame.className = "w-full aspect-video h-auto mt-4 rounded-xl";
+        frame.loading = "lazy";
+        frame.referrerPolicy = "no-referrer";
+        frame.allowFullscreen = true;
+        frame.setAttribute(
+          "sandbox",
+          "allow-scripts allow-same-origin allow-presentation"
+        );
+        button.nextElementSibling?.append(frame);
+        button.hidden = true;
+        frame.focus();
+      },
+      { once: true }
+    );
+  });
+</script>

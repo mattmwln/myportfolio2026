@@ -1,8 +1,14 @@
 // src/data/DataExperience.ts
 
 import type { Experience } from "../../types/experience";
+import { currentWork } from "../../data/person";
 
 export const experiences: Experience[] = [
+  {
+    role: currentWork.field,
+    company: currentWork.name,
+    period: "Present",
+  },
   {
     role: "Head of IT & Digital Media",
     company: "Caktadent Team (PT Bukit Asam Tbk Project)",
@@ -10,18 +16,8 @@ export const experiences: Experience[] = [
     points: [
       "Memimpin fungsi IT dalam proyek implementasi strategis PTBA.",
       "Merancang platform website pendukung dan infrastruktur digital.",
-      "Menangani pengembangan frontend dan desain UI/UX interaktif."
-    ]
-  },
-  {
-    role: "Web Developer",
-    company: "PT Al-Faruq Export Indonesia",
-    period: "Aug 2024 - Aug 2025",
-    points: [
-      "Membangun website korporat untuk memperkuat branding internasional.",
-      "Implementasi desain responsif dan optimasi performa web.",
-      "Menjaga konsistensi identitas brand di platform digital."
-    ]
+      "Menangani pengembangan frontend dan desain UI/UX interaktif.",
+    ],
   },
   {
     role: "System Analyst Intern",
@@ -30,10 +26,20 @@ export const experiences: Experience[] = [
     points: [
       "Identifikasi proses bisnis dan kebutuhan sistem unit internal.",
       "Merancang dokumentasi alur proses dan model sistem informasi.",
-      "Analisis data untuk referensi peningkatan efisiensi sistem."
-    ]
+      "Analisis data untuk referensi peningkatan efisiensi sistem.",
+    ],
   },
 
+  {
+    role: "Web Developer",
+    company: "PT Al-Faruq Export Indonesia",
+    period: "Aug 2024 - Aug 2025",
+    points: [
+      "Membangun website korporat untuk memperkuat branding internasional.",
+      "Implementasi desain responsif dan optimasi performa web.",
+      "Menjaga konsistensi identitas brand di platform digital.",
+    ],
+  },
   // 🔥 tambahan (hidden awal)
   {
     role: "Digital Marketing",
@@ -42,8 +48,8 @@ export const experiences: Experience[] = [
     points: [
       "Berkolaborasi dengan Senior Leader (SL) dan Assistant Senior Leader (ASL) dalam mengembangkan desain visual yang mendukung kebutuhan pemasaran digital perusahaan.",
       "Melakukan revisi desain berdasarkan feedback untuk memastikan kesesuaian dengan standar branding dan tujuan marketing.",
-      "Berpartisipasi dalam rapat tim untuk memberikan panduan visual serta teknik desain yang sesuai dengan kebutuhan kampanye digital."
-    ]
+      "Berpartisipasi dalam rapat tim untuk memberikan panduan visual serta teknik desain yang sesuai dengan kebutuhan kampanye digital.",
+    ],
   },
   {
     role: "Graphic Design",
@@ -53,7 +59,7 @@ export const experiences: Experience[] = [
       "Berkolaborasi secara intens dengan tim copywriting untuk memastikan konten desain yang dibuat relevan dan efektif.",
       "Berpengalaman bekerja sama dengan tim marketing dalam menghasilkan materi promosi yang menarik dan informatif.",
       "Menjaga kualitas desain dengan melakukan revisi berdasarkan feedback serta analisis performa.",
-      "Menggunakan berbagai tools desain seperti Adobe Creative Suite (Photoshop, Illustrator) untuk meningkatkan kualitas dan variasi desain."
-    ]
-  }
+      "Menggunakan berbagai tools desain seperti Adobe Creative Suite (Photoshop, Illustrator) untuk meningkatkan kualitas dan variasi desain.",
+    ],
+  },
 ];

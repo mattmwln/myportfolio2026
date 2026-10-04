@@ -1,0 +1,50 @@
+#profile .about-background {
+  background-position: center;
+}
+
+#profile .about-contact {
+  border-color: #ff3b30;
+  background: radial-gradient(ellipse at 80% 0%, #c8130f, transparent 65%),
+    linear-gradient(110deg, #b10d08, #480401 75%, #710704);
+  box-shadow: 0 0 24px #ed190955, 0 0 54px #ed190925, inset 0 1px 1px #ff958966,
+    inset 0 -1px 12px #ff241933;
+}
+
+#profile .about-contact:hover,
+#profile .about-contact:focus-visible {
+  border-color: #ff8173;
+  box-shadow: 0 0 30px #ed190980, 0 0 64px #ed190940, inset 0 1px 1px #ff958999;
+}
+
+#profile .about-info-card,
+#profile .about-principles {
+  border: 1px solid transparent;
+  background: linear-gradient(115deg, #110c0bef, #050505ed 65%, #180806ed)
+      padding-box,
+    linear-gradient(125deg, #d9503d99, #ffffff26 30%, #ffffff18 65%, #e3402399)
+      border-box;
+  box-shadow: 0 12px 36px #00000066, 0 0 20px #d620080c, inset 0 1px 0 #ffffff08;
+  backdrop-filter: blur(6px);
+}
+
+#profile .about-info-card:hover {
+  box-shadow: 0 12px 36px #00000066, 0 0 24px #e32b1926;
+}
+
+#profile .about-content p {
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 1024px) {
+  #profile > .relative.z-10 {
+    max-width: 1200px;
+    padding-inline: 72px;
+    padding-block: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  #profile .about-background {
+    background-position: 35% center;
+  }
+}

@@ -4,48 +4,16 @@ import Navbar from "../components/Header/Navbar";
 import ArrowTop from "../components/ArrowTop/ArrowTop";
 import ChatAiButton from "../components/AI";
 import ellipse from "../assets/images/ellipse.svg";
-import { SEO } from "astro-seo";
-
-
+import SEO from "../components/SEO.astro";
+import "../styles/navigation.css";
 ---
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id">
   <head>
-    <SEO
-      title={title}
-      description="2+ years of experience, using React.js and TypeScript for developing a website and web applications."
-      openGraph={{
-        basic: {
-          title: "Rahmat Maulana - Portfolio 2026",
-          type: "website",
-          image:
-            "https://media.licdn.com/dms/image/D5635AQEUuY0ZObmvww/profile-framedphoto-shrink_400_400/0/1694317611789?e=1719169200&v=beta&t=wSb9T7LGa-emPw8matJVjUQ-xtaBxJlUdQzGGJQGvzo",
-        },
-      }}
-      extend={{
-        link: [{ rel: "icon", href: "/logo.ico" }],
-        meta: [
-          {
-            name: "twitter:image",
-            content:
-              "https://media.licdn.com/dms/image/D5603AQE4v1D9ALFH3Q/profile-displayphoto-shrink_400_400/0/1685120536769?e=1695859200&v=beta&t=0U7MMccAyKPdtvn98VV2ajuhAHymEjA5Ly1vr6MG1Vs",
-          },
-          {
-            name: "twitter:title",
-            content: "Rahmat Maulana - Frontend Developer",
-          },
-          {
-            name: "twitter:description",
-            content:
-              "2+ years of experience, using React.js and TypeScript for developing a website and web applications.",
-          },
-        ],
-      }}
-    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta title={title} />
-    <link rel="icon" type="image/x-icon" href="/logo.ico" />
+    <SEO title={title} profile />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -54,20 +22,56 @@ import { SEO } from "astro-seo";
     />
   </head>
   <body class="bg-[#ffffff] overflow-x-hidden">
-    <img 
-      src={ellipse} 
-      alt="ellipse mattmwln" 
-      class="absolute top-0 left-0 max-w-full -z-0 pointer-events-none" 
+    <img
+      src={ellipse}
+      alt=""
+      aria-hidden="true"
+      class="absolute top-0 left-0 max-w-full -z-0 pointer-events-none"
     />
 
-    <main class="max-w-7xl mx-auto font-figtree text-primary-black">
-      <div class="m-5">
-        <Navbar client:load />
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] bg-white p-3"
+      >Lewati ke konten</a
+    >
+    <header class="max-w-7xl mx-auto font-figtree text-primary-black">
+      <Navbar client:load />
+    </header>
+    <main id="main-content" class="font-figtree text-primary-black">
+      <div class="max-w-7xl mx-auto m-5 xl:mx-auto">
         <ArrowTop client:load />
-        <!-- ChatAI Button dengan API Key -->
+
         <ChatAiButton client:load />
         <slot />
       </div>
+      <slot name="profile" />
+      <slot name="experience" />
+      <slot name="remaining" />
     </main>
+    <slot name="footer" />
+    <style is:global>
+      html {
+        scroll-behavior: smooth;
+      }
+      section[id],
+      footer[id] {
+        scroll-margin-top: 105px;
+      }
+      :focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 4px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
   </body>
 </html>

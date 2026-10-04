@@ -1,0 +1,182 @@
+---
+import { person } from "../data/person";
+import { identityNodes, type ArticleMetadata } from "../data/structured-data";
+interface Props {
+  title: string;
+  description?: string;
+  noindex?: boolean;
+  profile?: boolean;
+  collection?: boolean;
+  postUrls?: string[];
+  article?: ArticleMetadata;
+  cover?: { src: string; alt: string; width: number; height: number };
+}
+const {
+  title,
+  description = person.description,
+  noindex = false,
+  profile = false,
+  collection = false,
+  postUrls = [],
+  article,
+  cover,
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site!);
+const home = new URL("/", Astro.site!).href;
+const blogUrl = new URL("/blog/", Astro.site!).href;
+const image = new URL(cover?.src ?? "/social-preview.png", Astro.site!).href;
+const imageAlt = cover?.alt ?? "Rahmat Maulana - Mattmwln";
+const personRef = { "@id": `${home}#person` };
+const blogNode = {
+  "@type": "Blog",
+  "@id": `${blogUrl}#blog`,
+  url: blogUrl,
+  name: "Blog Rahmat Maulana",
+  inLanguage: "id-ID",
+  author: personRef,
+  publisher: personRef,
+  isPartOf: { "@id": `${home}#website` },
+  ...(collection
+    ? { blogPost: postUrls.map((url) => ({ "@id": `${url}#article` })) }
+    : {}),
+};
+const dateValue = (date: Date) => date.toISOString().slice(0, 10);
+const nodes: Record<string, unknown>[] = identityNodes(home);
+if (profile)
+  nodes.push({
+    "@type": "ProfilePage",
+    "@id": `${home}#profilepage`,
+    url: canonical.href,
+    name: title,
+    description,
+    inLanguage: "id-ID",
+    isPartOf: { "@id": `${home}#website` },
+    mainEntity: personRef,
+  });
+if (collection)
+  nodes.push(blogNode, {
+    "@type": "CollectionPage",
+    "@id": `${blogUrl}#webpage`,
+    url: canonical.href,
+    name: title,
+    description,
+    inLanguage: "id-ID",
+    isPartOf: { "@id": `${home}#website` },
+    mainEntity: { "@id": `${blogUrl}#blog` },
+  });
+if (article)
+  nodes.push(
+    blogNode,
+    {
+      "@type": "WebPage",
+      "@id": `${canonical.href}#webpage`,
+      url: canonical.href,
+      name: title,
+      description,
+      inLanguage: "id-ID",
+      isPartOf: { "@id": `${home}#website` },
+      mainEntity: { "@id": `${canonical.href}#article` },
+      breadcrumb: { "@id": `${canonical.href}#breadcrumb` },
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": `${canonical.href}#article`,
+      url: canonical.href,
+      headline: article.title,
+      description,
+      inLanguage: "id-ID",
+      author: personRef,
+      publisher: personRef,
+      datePublished: dateValue(article.publishedAt),
+      ...(article.updatedAt
+        ? { dateModified: dateValue(article.updatedAt) }
+        : {}),
+      articleSection: article.category,
+      ...(article.tags.length ? { keywords: article.tags } : {}),
+      ...(article.sourceUrl ? { isBasedOn: article.sourceUrl } : {}),
+      image,
+      mainEntityOfPage: { "@id": `${canonical.href}#webpage` },
+      isPartOf: { "@id": `${blogUrl}#blog` },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonical.href}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: home },
+        { "@type": "ListItem", position: 2, name: "Blog", item: blogUrl },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: article.title,
+          item: canonical.href,
+        },
+      ],
+    }
+  );
+const graph = { "@context": "https://schema.org", "@graph": nodes };
+const googleVerification = import.meta.env.GOOGLE_SITE_VERIFICATION;
+const bingVerification = import.meta.env.BING_SITE_VERIFICATION;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta
+  name="robots"
+  content={noindex
+    ? "noindex, follow"
+    : "index, follow, max-image-preview:large"}
+/>
+{!noindex && <link rel="canonical" href={canonical.href} />}
+<link rel="icon" type="image/x-icon" href="/logo.ico" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="Blog Rahmat Maulana"
+  href={`${home}rss.xml`}
+/>
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical.href} />
+<meta property="og:type" content={article ? "article" : "website"} />
+<meta property="og:site_name" content="Rahmat Maulana - Mattmwln" />
+<meta property="og:locale" content="id_ID" />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content={String(cover?.width ?? 1200)} />
+<meta property="og:image:height" content={String(cover?.height ?? 630)} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content={imageAlt} />
+{
+  article && (
+    <meta
+      property="article:published_time"
+      content={article.publishedAt.toISOString()}
+    />
+  )
+}
+{
+  article?.updatedAt && (
+    <meta
+      property="article:modified_time"
+      content={article.updatedAt.toISOString()}
+    />
+  )
+}
+{article && <meta property="article:author" content={home} />}
+{
+  googleVerification && (
+    <meta name="google-site-verification" content={googleVerification} />
+  )
+}
+{bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
+{
+  !noindex && (profile || collection || article) && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(graph).replace(/</g, "\\u003c")}
+    />
+  )
+}
