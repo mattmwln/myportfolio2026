@@ -3,6 +3,7 @@ import arrowTop from "../../assets/icons/arrow-top.svg";
 
 const ArrowTop: React.FC = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
+  const [isFooterVisible, setIsFooterVisible] = useState<boolean>(false);
 
   const goTop = () => {
     window.scrollTo({
@@ -21,8 +22,20 @@ const ArrowTop: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    const footer = document.getElementById("footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsFooterVisible(entry.isIntersecting);
+    });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    showButton && (
+    showButton &&
+    !isFooterVisible && (
       <button
         aria-label="Kembali ke atas"
         onClick={goTop}

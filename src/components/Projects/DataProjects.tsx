@@ -1,4 +1,3 @@
-// DataProjects.ts
 import reactLogo from "../../assets/icons/tech-stack/react.svg";
 import tailwindLogo from "../../assets/icons/tech-stack/tailwind.svg";
 import nextjsLogo from "../../assets/icons/tech-stack/nextjs.svg";
@@ -8,18 +7,22 @@ import typescriptLogo from "../../assets/icons/tech-stack/typescript.svg";
 import viteLogo from "../../assets/icons/tech-stack/vite.svg";
 import figmaLogo from "../../assets/icons/tech-stack/figma.svg";
 
-import caktadentLogo from "../../assets/icons/project/caktadent.webp";
-import fattkaLogo from "../../assets/icons/project/fattka.webp";
-import alfaruqLogo from "../../assets/icons/project/alfaruq.webp";
+import caktadentPreview from "../../assets/icons/project/caktadent-card.webp";
+import fattkaPreview from "../../assets/icons/project/fattka-card.webp";
+import alfaruqPreview from "../../assets/icons/project/alfaruq-card.webp";
 
-const DATA_PROJECTS = [
+const DATA_PROJECTS: Projects[] = [
   {
     id: 1,
     title: "Caktadent Ecosystem",
     category: "Company Project",
-    img_url: caktadentLogo,
-    logo: reactLogo,
-    tech_stack_logo: [reactLogo, tailwindLogo, viteLogo, typescriptLogo],
+    img_url: caktadentPreview,
+    tech_stack: [
+      { name: "React", logo: reactLogo },
+      { name: "Tailwind", logo: tailwindLogo },
+      { name: "Vite", logo: viteLogo },
+      { name: "TypeScript", logo: typescriptLogo },
+    ],
     navigate_url: "https://github.com/mattmwln/Caktadent",
     award: "Top 3 Achievement",
     description:
@@ -29,9 +32,13 @@ const DATA_PROJECTS = [
     id: 2,
     title: "PT Al-Faruq Export",
     category: "Branding & Web",
-    img_url: alfaruqLogo,
-    logo: nextjsLogo,
-    tech_stack_logo: [nextjsLogo, nodejsLogo, tailwindLogo, figmaLogo],
+    img_url: alfaruqPreview,
+    tech_stack: [
+      { name: "Next.js", logo: nextjsLogo },
+      { name: "Node.js", logo: nodejsLogo },
+      { name: "Tailwind", logo: tailwindLogo },
+      { name: "Figma", logo: figmaLogo },
+    ],
     navigate_url: null,
     award: null,
     description:
@@ -41,9 +48,13 @@ const DATA_PROJECTS = [
     id: 3,
     title: "PT Fattka",
     category: "Client Project",
-    img_url: fattkaLogo,
-    logo: fattkaLogo,
-    tech_stack_logo: [reactLogo, tailwindLogo, viteLogo, javascriptLogo],
+    img_url: fattkaPreview,
+    tech_stack: [
+      { name: "React", logo: reactLogo },
+      { name: "Tailwind", logo: tailwindLogo },
+      { name: "Vite", logo: viteLogo },
+      { name: "JavaScript", logo: javascriptLogo },
+    ],
     navigate_url: "https://pt-fattka.vercel.app/",
     award: null,
     description:

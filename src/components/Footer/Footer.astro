@@ -1,465 +1,273 @@
 ---
 import SocialMedia from "./SocialMedia";
 import { contactEmail, currentWork } from "../../data/person";
+import footerBackground from "../../assets/background-mafia/background-footer.webp";
+import "../../styles/footer.css";
 ---
 
-<footer
-  id="footer"
-  class="relative overflow-hidden border-t border-slate-200/70 bg-white text-slate-950"
->
-  <!-- SPACE BACKGROUND -->
+<footer id="footer" class="footer-scene">
   <div
-    class="pointer-events-none absolute inset-0 overflow-hidden"
+    class="footer-scene__background"
+    style={`background-image: url(${footerBackground});`}
     aria-hidden="true"
   >
-    <!-- Ambient Glow -->
-    <div
-      class="absolute -right-40 top-20 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(55,88,120,0.13)_0%,rgba(55,88,120,0.045)_42%,transparent_72%)]"
-    >
-    </div>
-
-    <div
-      class="absolute -bottom-72 left-[38%] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(55,88,120,0.10)_0%,rgba(55,88,120,0.035)_45%,transparent_72%)]"
-    >
-    </div>
-
-    <!-- Large Planet -->
-    <div
-      class="absolute -bottom-[330px] right-[4%] h-[520px] w-[720px] rotate-[-8deg] rounded-[50%] bg-[linear-gradient(145deg,rgba(147,197,253,0.50),rgba(55,88,120,0.92))] opacity-90"
-    >
-    </div>
-
-    <!-- Planet Highlight -->
-    <div
-      class="absolute -bottom-[300px] right-[7%] h-[500px] w-[700px] rotate-[-8deg] rounded-[50%] border-t border-white/80"
-    >
-    </div>
-
-    <!-- Orbit -->
-    <div
-      class="absolute -right-[160px] top-[-110px] h-[720px] w-[980px] rotate-[18deg] rounded-[50%] border border-[rgba(55,88,120,0.28)]"
-    >
-    </div>
-
-    <div
-      class="absolute -right-[80px] top-[-170px] h-[860px] w-[1050px] rotate-[12deg] rounded-[50%] border border-dashed border-[rgba(55,88,120,0.20)]"
-    >
-    </div>
-
-    <div
-      class="absolute -left-[420px] bottom-[-330px] h-[680px] w-[920px] rotate-[14deg] rounded-[50%] border border-[rgba(55,88,120,0.12)]"
-    >
-    </div>
-
-    <!-- Small Planet -->
-    <div
-      class="absolute right-[29%] top-10 h-16 w-16 rounded-full bg-[radial-gradient(circle_at_35%_30%,#dbeafe_0%,#8fb3d8_42%,#375878_100%)] shadow-[0_18px_45px_rgba(55,88,120,0.15)]"
-    >
-    </div>
-
-    <!-- Orbit Dot -->
-    <div
-      class="absolute bottom-[21%] right-[7.5%] h-3.5 w-3.5 rounded-full bg-[rgb(55_88_120/0.9)] shadow-[0_0_0_5px_rgba(55,88,120,0.06)]"
-    >
-    </div>
-
-    <!-- Star Left -->
-    <div class="absolute left-[4%] top-[27%] text-[rgb(55_88_120/0.9)]">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path
-          d="M14 0C14.6 9.4 18.6 13.4 28 14C18.6 14.6 14.6 18.6 14 28C13.4 18.6 9.4 14.6 0 14C9.4 13.4 13.4 9.4 14 0Z"
-          fill="currentColor"></path>
-      </svg>
-    </div>
-
-    <!-- Star Bottom -->
-    <div class="absolute bottom-[20%] left-[17%] text-[rgb(55_88_120/0.75)]">
-      <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-        <path
-          d="M14 0C14.6 9.4 18.6 13.4 28 14C18.6 14.6 14.6 18.6 14 28C13.4 18.6 9.4 14.6 0 14C9.4 13.4 13.4 9.4 14 0Z"
-          fill="currentColor"></path>
-      </svg>
-    </div>
-
-    <!-- Star Right -->
-    <div class="absolute right-[15%] top-[17%] text-[rgb(55_88_120/0.9)]">
-      <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-        <path
-          d="M14 0C14.6 9.4 18.6 13.4 28 14C18.6 14.6 14.6 18.6 14 28C13.4 18.6 9.4 14.6 0 14C9.4 13.4 13.4 9.4 14 0Z"
-          fill="currentColor"></path>
-      </svg>
-    </div>
   </div>
+  <div class="footer-scene__shade" aria-hidden="true"></div>
 
-  <!-- MAIN -->
-  <div
-    class="relative z-10 mx-auto max-w-6xl px-6 pb-10 pt-20 md:px-10 lg:pt-24"
-  >
-    <!-- BRAND -->
-    <div class="mb-12 flex items-center gap-4 lg:mb-14">
-      <span
-        class="h-2.5 w-2.5 rounded-full bg-[rgb(55_88_120/0.9)] shadow-[0_0_0_5px_rgba(55,88,120,0.06)]"
-      >
-      </span>
-
-      <span class="text-[11px] font-semibold tracking-[0.24em] text-slate-800">
-        RM
-      </span>
-
-      <span
-        class="h-px w-24 bg-gradient-to-r from-[rgba(55,88,120,0.35)] to-transparent sm:w-40 md:w-64"
-      >
-      </span>
-    </div>
-
-    <!-- CONTENT GRID -->
-    <div class="grid items-start gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-      <!-- LEFT -->
-      <div class="max-w-md">
-        <p
-          class="mb-4 text-[10px] font-semibold uppercase tracking-[0.34em] text-[rgb(55_88_120/0.72)]"
-        >
-          Let's Connect
-        </p>
-
-        <h2
-          class="mb-1 text-[clamp(3.25rem,6vw,5.3rem)] font-bold leading-[0.92] tracking-[-0.065em] text-slate-950"
-        >
-          Maulana<span class="text-[rgb(55_88_120/0.9)]">.</span>
-        </h2>
-
-        <h3
-          class="mb-5 text-[clamp(2rem,4vw,3.25rem)] font-semibold leading-none tracking-[-0.05em] text-slate-950"
-        >
-          Hubungi
-          <span class="text-[rgb(55_88_120/0.9)]">Saya</span>
-        </h3>
-
-        <p class="max-w-sm text-sm leading-6 text-slate-500 md:text-[15px]">
+  <div class="footer-scene__content">
+    <div class="footer-scene__columns">
+      <div class="footer-intro">
+        <div class="footer-brand" aria-label="Rahmat Maulana">
+          <span>RM</span><span class="footer-brand__line"></span>
+        </div>
+        <p class="footer-eyebrow">Let's connect</p>
+        <h2>Maulana<span>.</span></h2>
+        <p class="footer-intro__title">Hubungi <strong>Saya</strong></p>
+        <p class="footer-intro__copy">
           Kirim pesan, saya akan merespons secepat mungkin.
         </p>
+        <div class="footer-social"><SocialMedia client:load /></div>
+      </div>
 
-        <!-- CONTACT FORM -->
-        <form id="contact-form" class="mt-8 space-y-3">
-          <div class="grid gap-3 sm:grid-cols-2">
-            <label class="sr-only" for="contact-email"> Email Anda</label>
-
-            <input
-              id="contact-email"
-              type="email"
-              name="email"
-              autocomplete="email"
-              placeholder="Email"
-              required
-              class="h-12 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 text-sm text-slate-900 shadow-[0_8px_30px_rgba(15,23,42,0.035)] outline-none backdrop-blur-xl transition placeholder:text-slate-400 hover:border-slate-300 focus:border-[rgba(55,88,120,0.45)] focus:ring-4 focus:ring-[rgba(55,88,120,0.07)]"
-            />
-
-            <label class="sr-only" for="contact-message"> Pesan Anda</label>
-
-            <input
-              id="contact-message"
-              type="text"
-              name="message"
-              placeholder="Pesan"
-              required
-              class="h-12 w-full rounded-2xl border border-slate-200 bg-white/80 px-4 text-sm text-slate-900 shadow-[0_8px_30px_rgba(15,23,42,0.035)] outline-none backdrop-blur-xl transition placeholder:text-slate-400 hover:border-slate-300 focus:border-[rgba(55,88,120,0.45)] focus:ring-4 focus:ring-[rgba(55,88,120,0.07)]"
-            />
-          </div>
-
-          <!-- SUBMIT -->
-          <button
-            id="submit-button"
-            type="submit"
-            class="group flex h-14 w-full items-center justify-between rounded-[20px] bg-[linear-gradient(110deg,rgb(55_88_120),rgb(70_116_158))] px-5 text-sm font-medium text-white shadow-[0_14px_35px_rgba(55,88,120,0.24)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_42px_rgba(55,88,120,0.30)] active:translate-y-0 active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
+      <form id="contact-form" class="footer-form">
+        <label for="contact-email">Email Anda</label>
+        <div class="footer-form__field">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            aria-hidden="true"
+            ><rect x="3" y="5" width="18" height="14" rx="2"></rect><path
+              d="m3 7 9 7 9-7"></path></svg
           >
-            <span class="flex items-center gap-3">
-              <span
-                class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/15"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="m22 2-7 20-4-9-9-4Z"></path>
-                  <path d="M22 2 11 13"></path>
-                </svg>
-              </span>
+          <input
+            id="contact-email"
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="Email"
+            required
+          />
+        </div>
 
-              <span id="button-label"> Kirim Pesan</span>
-            </span>
+        <label for="contact-message">Pesan Anda</label>
+        <div class="footer-form__field footer-form__field--message">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            aria-hidden="true"
+            ><path
+              d="M20 16a3 3 0 0 1-3 3H8l-5 3V7a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3z"
+            ></path><path d="M7 9h10M7 13h7"></path></svg
+          >
+          <textarea
+            id="contact-message"
+            name="message"
+            placeholder="Pesan"
+            required
+            rows="4"></textarea>
+        </div>
 
+        <div class="footer-form__bottom">
+          <button id="submit-button" type="submit" class="footer-form__submit">
             <svg
-              class="transition-transform duration-300 group-hover:translate-x-1"
-              width="18"
-              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              stroke-width="1.7"
               aria-hidden="true"
+              ><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"
+              ></path></svg
             >
-              <path d="M5 12h14"></path>
-              <path d="m13 6 6 6-6 6"></path>
-            </svg>
+            <span id="button-label">Kirim Pesan</span>
+            <span class="footer-form__arrow" aria-hidden="true">→</span>
           </button>
-
-          <p class="flex items-center gap-2 pt-1 text-[11px] text-slate-500">
-            <span class="h-1.5 w-1.5 rounded-full bg-[rgb(55_88_120/0.9)]">
-            </span>
-
-            Tidak spam. Respon ±24 jam.
+          <p class="footer-form__note">
+            <span></span>Tidak spam. Balasan via email.
           </p>
-        </form>
+        </div>
+      </form>
 
-        <!-- SOCIAL MEDIA -->
-        <div class="mt-7">
-          <SocialMedia client:load />
+      <div class="footer-contact">
+        <div class="footer-contact__heading">
+          <span class="footer-contact__dot"></span>
+          <h3>Kontak</h3>
+          <span class="footer-contact__line"></span>
+          <span class="footer-contact__eyebrow">Get in touch</span>
         </div>
 
-        <!-- MICRO TEXT -->
-        <div
-          class="mt-12 hidden items-center gap-3 text-[9px] font-medium uppercase tracking-[0.28em] text-slate-400 sm:flex"
-        >
-          <span>Solve</span>
-
-          <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-
-          <span>Build</span>
-
-          <span class="h-1 w-1 rounded-full bg-slate-300"></span>
-
-          <span>Grow</span>
-        </div>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="relative space-y-4">
-        <!-- CONTACT CARD -->
-        <section
-          class="relative overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/80 p-5 shadow-[0_22px_70px_rgba(55,88,120,0.08)] backdrop-blur-2xl sm:p-7"
-        >
-          <!-- card glow -->
-          <div
-            class="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(55,88,120,0.08),transparent_68%)]"
-          >
-          </div>
-
-          <!-- CARD HEADER -->
-          <div class="relative flex items-center justify-between">
-            <h3
-              class="text-xl font-semibold tracking-[-0.035em] text-slate-950"
-            >
-              Kontak
-            </h3>
-
-            <div
-              class="flex items-center gap-2 text-[8px] font-semibold uppercase tracking-[0.3em] text-slate-400"
-            >
-              Get in touch
-
-              <span class="h-2 w-2 rounded-full bg-[rgb(55_88_120/0.9)]">
-              </span>
+        <div class="footer-contact__cards">
+          <div class="footer-contact__card">
+            <span class="footer-contact__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+                ><rect x="3" y="5" width="18" height="14" rx="2"></rect><path
+                  d="m3 7 9 7 9-7"></path></svg
+              >
+            </span>
+            <div class="footer-contact__text">
+              <span>Email</span><a href={`mailto:${contactEmail}`}
+                >{contactEmail}</a
+              >
             </div>
-          </div>
-
-          <!-- CONTACT LIST -->
-          <div class="relative mt-5 border-t border-slate-200/80">
-            <!-- EMAIL -->
-            <div
-              class="group flex items-center gap-4 border-b border-slate-200/80 py-5"
+            <button
+              id="copy-email"
+              type="button"
+              data-email={contactEmail}
+              aria-label="Salin alamat email"
+              class="footer-contact__action"
             >
-              <div
-                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] transition group-hover:-translate-y-0.5"
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+                ><rect x="8" y="8" width="12" height="12" rx="2"></rect><path
+                  d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"
+                ></path></svg
               >
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect width="20" height="16" x="2" y="4" rx="2"> </rect>
-
-                  <path d="m22 7-10 6L2 7"></path>
-                </svg>
-              </div>
-
-              <div class="min-w-0 flex-1">
-                <p class="mb-0.5 text-[11px] text-slate-400">Email</p>
-
-                <a
-                  href={`mailto:${contactEmail}`}
-                  class="block truncate text-[13px] font-medium text-slate-900 transition hover:text-[rgb(55_88_120)] sm:text-sm"
-                >
-                  {contactEmail}
-                </a>
-              </div>
-
-              <!-- COPY EMAIL -->
-              <button
-                type="button"
-                id="copy-email"
-                data-email={contactEmail}
-                aria-label="Salin email"
-                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-500 transition hover:bg-slate-100 hover:text-slate-950"
+            </button>
+          </div>
+          <div class="footer-contact__card">
+            <span class="footer-contact__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+                ><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                ></path><circle cx="12" cy="10" r="2.5"></circle></svg
               >
-                <svg
-                  width="17"
-                  height="17"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect width="14" height="14" x="8" y="8" rx="2"> </rect>
-
-                  <path
-                    d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
-                  >
-                  </path>
-                </svg>
-              </button>
-            </div>
-
-            <!-- LOCATION -->
-            <div class="group flex items-center gap-4 py-5">
-              <div
-                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] transition group-hover:-translate-y-0.5"
-              >
-                <svg
-                  width="19"
-                  height="19"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.7"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z">
-                  </path>
-
-                  <circle cx="12" cy="10" r="2.5"> </circle>
-                </svg>
-              </div>
-
-              <div>
-                <p class="mb-0.5 text-[11px] text-slate-400">Lokasi</p>
-
-                <p class="text-[13px] font-medium text-slate-900 sm:text-sm">
-                  Sumatera Selatan
-                </p>
-              </div>
+            </span>
+            <div class="footer-contact__text">
+              <span>Lokasi</span><strong>Sumatera Selatan</strong>
             </div>
           </div>
-        </section>
-
-        <!-- STATUS -->
-        <section
-          class="relative overflow-hidden rounded-[26px] border border-slate-200/80 bg-white/80 p-5 shadow-[0_18px_55px_rgba(55,88,120,0.065)] backdrop-blur-2xl sm:px-7 sm:py-6"
-        >
-          <div
-            class="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
-          >
-            <div>
-              <h3
-                class="mb-2 text-lg font-semibold tracking-[-0.035em] text-slate-950"
+          <div class="footer-contact__card">
+            <span class="footer-contact__icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+                ><circle cx="12" cy="7" r="3"></circle><path
+                  d="M5 21v-2a7 7 0 0 1 14 0v2H5Z"></path></svg
               >
-                Status
-              </h3>
-
-              <p class="text-xs text-slate-400">
-                {currentWork.name}
-                <span class="px-1">•</span>
-                Sistem Informasi
-              </p>
+            </span>
+            <div class="footer-contact__text">
+              <span>Status</span><strong
+                >{currentWork.name}
+                <span class="footer-contact__separator">·</span> Sistem Informasi</strong
+              ><em>{currentWork.field}</em>
             </div>
-
-            <div
-              class="inline-flex w-fit items-center gap-2 rounded-full border border-[rgba(55,88,120,0.10)] bg-[rgba(55,88,120,0.055)] px-4 py-2 text-[11px] font-medium text-[rgb(55_88_120)]"
-            >
-              <span class="relative flex h-2 w-2">
-                <span
-                  class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[rgb(55_88_120/0.45)]"
-                >
-                </span>
-
-                <span
-                  class="relative inline-flex h-2 w-2 rounded-full bg-[rgb(55_88_120/0.9)]"
-                >
-                </span>
-              </span>
-
-              {currentWork.field}
-            </div>
+            <span class="footer-contact__online" aria-label="Pekerjaan saat ini"
+            ></span>
           </div>
-        </section>
-
-        <!-- DECORATIVE TEXT -->
-        <div
-          class="hidden justify-end pt-3 text-[9px] font-medium uppercase tracking-[0.32em] text-slate-300 lg:flex"
-        >
-          Ideas&nbsp;&nbsp;to&nbsp;&nbsp;Impact
         </div>
       </div>
     </div>
 
-    <!-- FOOTER BOTTOM -->
-    <div
-      class="mt-20 flex flex-col items-center justify-between gap-4 border-t border-slate-200/80 pt-6 text-[10px] text-slate-400 md:mt-24 md:flex-row"
-    >
-      <p>
-        © {new Date().getFullYear()} Rahmat Maulana
-      </p>
+    <div class="footer-principles" aria-label="Solve, Build, Grow">
+      <div class="footer-principles__item">
+        <span class="footer-principles__icon"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            aria-hidden="true"
+            ><circle cx="12" cy="12" r="8"></circle><circle
+              cx="12"
+              cy="12"
+              r="3"></circle><path d="M18 6 21 3"></path></svg
+          ></span
+        >
+        <span
+          ><strong>Solve</strong><small>Turn problems into solutions</small
+          ></span
+        >
+      </div>
+      <div class="footer-principles__item">
+        <span class="footer-principles__icon"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            aria-hidden="true"
+            ><path d="m12 2 9 5-9 5-9-5 9-5Z"></path><path
+              d="m3 12 9 5 9-5M3 17l9 5 9-5"></path></svg
+          ></span
+        >
+        <span
+          ><strong>Build</strong><small>Create digital experiences</small></span
+        >
+      </div>
+      <div class="footer-principles__item">
+        <span class="footer-principles__icon"
+          ><svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            aria-hidden="true"
+            ><path d="M3 20h18M6 16v-4M11 16V8M16 16V4m-1 1 2-2 2 2"
+            ></path></svg
+          ></span
+        >
+        <span><strong>Grow</strong><small>Make an impact</small></span>
+      </div>
+    </div>
+  </div>
 
-      <a
-        href="/blog/"
-        class="font-medium text-slate-900 transition hover:text-[rgb(55_88_120)]"
-      >
-        Blog</a
-      >
-
-      <p class="uppercase tracking-[0.22em]">
-        System Analyst • Frontend • Data
-      </p>
+  <div class="footer-bottom">
+    <div class="footer-bottom__inner">
+      <p>© {new Date().getFullYear()} Rahmat Maulana</p>
+      <nav aria-label="Navigasi footer">
+        <a href="/blog/">Blog</a><span>·</span><span>System Analyst</span><span
+          >·</span
+        ><span>Frontend</span><span>·</span><span>Data</span>
+      </nav>
+      <p class="footer-bottom__motto">Ideas to Impact <span></span></p>
     </div>
   </div>
 </footer>
 
-<!-- SUCCESS POPUP -->
+<!-- =========================================================
+     SUCCESS POPUP
+========================================================== -->
+
 <div
   id="success-popup"
   role="status"
   aria-live="polite"
-  class="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/15 px-6 opacity-0 backdrop-blur-[5px] transition duration-300"
+  class="pointer-events-none fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-6 opacity-0 backdrop-blur-md transition duration-300"
 >
   <div
     id="success-box"
-    class="w-full max-w-xs scale-95 rounded-[26px] border border-white/70 bg-white/95 px-7 py-7 text-center shadow-[0_30px_100px_rgba(15,23,42,0.18)] transition duration-300"
+    class="relative w-full max-w-xs scale-95 overflow-hidden rounded-[24px] border border-red-500/20 bg-[#0a0707]/95 px-7 py-7 text-center shadow-[0_30px_100px_rgba(0,0,0,0.70)] transition duration-300"
   >
     <div
-      class="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(55,88,120,0.08)] text-[rgb(55_88_120)]"
+      class="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(239,0,0,0.12),transparent_70%)]"
+    >
+    </div>
+
+    <div
+      class="relative mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-full border border-red-500/20 bg-red-500/[0.06] text-red-500 shadow-[0_0_30px_rgba(239,0,0,0.08)]"
     >
       <svg
-        width="20"
-        height="20"
+        width="19"
+        height="19"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -472,15 +280,20 @@ import { contactEmail, currentWork } from "../../data/person";
       </svg>
     </div>
 
-    <p class="text-sm font-semibold text-slate-900">Pesan terkirim</p>
+    <p class="relative text-sm font-semibold text-neutral-100">
+      Pesan terkirim
+    </p>
 
-    <p class="mt-1 text-xs leading-5 text-slate-400">
+    <p class="relative mt-2 text-[11px] leading-5 text-neutral-600">
       Terima kasih. Saya akan segera merespons pesan Anda.
     </p>
   </div>
 </div>
 
-<!-- EMAILJS -->
+<!-- =========================================================
+     EMAILJS
+========================================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
 ></script>
 
@@ -514,9 +327,8 @@ import { contactEmail, currentWork } from "../../data/person";
         try {
           await navigator.clipboard.writeText(email);
 
-          copyEmailButton.style.background = "rgba(55, 88, 120, 0.08)";
-
-          copyEmailButton.style.color = "rgb(55, 88, 120)";
+          copyEmailButton.style.background = "rgba(239, 0, 0, 0.08)";
+          copyEmailButton.style.color = "rgb(248, 113, 113)";
 
           setTimeout(function () {
             copyEmailButton.style.background = "";

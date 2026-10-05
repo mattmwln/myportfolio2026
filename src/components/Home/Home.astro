@@ -1,12 +1,39 @@
 ---
 import SocialMedia from "./SocialMedia";
 import HomeContent from "./HomeContent";
-
+import backgroundHome from "../../assets/background-mafia/background-home.webp";
+import "../../styles/home.css";
 ---
 
-<section id="home" class="flex justify-center items-center md:my-32 md:min-h-fit min-h-screen">
-  <div class="flex flex-col items-center gap-3">
+<section id="home" class="home-hero">
+  <div
+    class="home-hero__background"
+    style={`background-image: url(${backgroundHome});`}
+    aria-hidden="true"
+  >
+  </div>
+  <div class="home-hero__shade" aria-hidden="true"></div>
+  <span class="home-hero__spark" aria-hidden="true">✦</span>
+  <span class="home-hero__side home-hero__side--left" aria-hidden="true"
+    >MATTMWLN</span
+  >
+  <span class="home-hero__side home-hero__side--right" aria-hidden="true"
+    >IDEAS<br />BUILD<br />IMPACT</span
+  >
+  <span class="home-hero__side home-hero__side--bottom" aria-hidden="true"
+    >DISCIPLINE<br />BUILDS<br />FREEDOM</span
+  >
+  <div class="home-hero__content flex flex-col items-center gap-3">
     <HomeContent client:load />
     <SocialMedia client:load />
   </div>
+  <a
+    class="home-hero__scroll"
+    href="#profile"
+    aria-label="Gulir ke profil Rahmat Maulana"
+  >
+    <span class="home-hero__scroll-star" aria-hidden="true">✦</span>
+    <span class="home-hero__mouse" aria-hidden="true"><span></span></span>
+    <span>SCROLL</span>
+  </a>
 </section>

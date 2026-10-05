@@ -44,35 +44,25 @@ const HomeContent = () => {
         initial={false}
         animate="visible"
         variants={containerHomeVariants}
-        className="mt-8 flex flex-col items-center"
+        className="home-hero__heading flex flex-col items-center"
       >
-        <h1
-          className="font-extrabold xl:text-5xl md:text-4xl text-xl"
-          style={{ color: "#111111" }} // Apple style heading
-        >
-          Hello, I’m Rahmat Maulana.
+        <p className="home-hero__eyebrow">HELLO,</p>
+        <h1 className="home-hero__title">
+          <span className="home-hero__im">I’m</span>{" "}
+          <span className="home-hero__name">Rahmat Maulana.</span>
         </h1>
-
-        <div className="relative -z-10">
-          <p
-            className="mx-2 xl:text-[82px] md:text-[70px] text-[32px] font-bold tracking-tight"
-            style={{ color: "#333333" }} // Apple style sub-heading
-          >
-            Digital Product Dev.
-          </p>
-        </div>
+        <p className="home-hero__role">DIGITAL PRODUCT DEV.</p>
       </motion.div>
 
       <motion.p
         initial={false}
         animate="visible"
         variants={descriptionHomeVariants}
-        className="md:text-[20px] max-w-3xl text-center md:leading-10 leading-6"
-        style={{ color: "#666666" }} // Apple style body text
+        className="home-hero__description"
       >
         Dikenal sebagai Mattmwln, saat ini bekerja di {currentWork.name} dalam
         bidang{" "}
-        <span className="font-semibold" style={{ color: "#000000" }}>
+        <span className="home-hero__highlight">
           {currentWork.field.toLowerCase()}
         </span>
         . Berpengalaman dalam pengembangan web, analisis sistem, dan desain
@@ -80,7 +70,7 @@ const HomeContent = () => {
       </motion.p>
 
       <canvas
-        className="bg-skin-base pointer-events-none absolute inset-0"
+        className="home-hero__canvas pointer-events-none"
         id="canvas"
         aria-hidden="true"
       ></canvas>

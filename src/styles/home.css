@@ -1,0 +1,342 @@
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: max(100svh, 710px);
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  background: #050303;
+  color: #f8f8f8;
+  font-family: "Figtree", sans-serif;
+}
+
+.home-hero__background,
+.home-hero__shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.home-hero__background {
+  z-index: -2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-hero__shade {
+  z-index: -1;
+  background: radial-gradient(
+      ellipse 42% 44% at 50% 35%,
+      #000a,
+      transparent 100%
+    ),
+    linear-gradient(180deg, #0005, transparent 23% 77%, #0003);
+}
+
+.home-hero__content {
+  position: relative;
+  width: min(100% - 32px, 980px);
+  margin-top: clamp(154px, 21vh, 186px);
+  text-align: center;
+}
+
+.home-hero__heading,
+.home-hero__description,
+.home-hero__content > :not(canvas) {
+  position: relative;
+  z-index: 2;
+}
+
+.home-hero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 9px;
+  color: #aeb0b5;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.47em;
+}
+
+.home-hero__eyebrow::before,
+.home-hero__eyebrow::after {
+  content: "";
+  width: 58px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c80c19);
+}
+
+.home-hero__eyebrow::after {
+  transform: rotate(180deg);
+}
+
+.home-hero__title {
+  margin: 0;
+  font-size: clamp(36px, 5.35vw, 72px);
+  font-weight: 900;
+  letter-spacing: -0.054em;
+  line-height: 1.12;
+  text-wrap: balance;
+  white-space: nowrap;
+}
+
+.home-hero__im {
+  color: #f1f0f2;
+  text-shadow: 0 2px 18px #fff2;
+}
+
+.home-hero__name {
+  color: #e51d29;
+  background: linear-gradient(180deg, #ff5052 4%, #ef2735 45%, #ae0a14 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 12px #c800152f);
+}
+
+.home-hero__role {
+  margin: 3px 0 0;
+  color: #b7b4b8;
+  font-size: clamp(12px, 1.48vw, 19px);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+}
+
+.home-hero__description {
+  max-width: 555px;
+  margin: 18px auto 0;
+  color: #aaa7aa;
+  font-size: clamp(14px, 1.18vw, 16px);
+  line-height: 1.52;
+  text-wrap: pretty;
+}
+
+.home-hero__highlight {
+  color: #f22a36;
+  font-weight: 700;
+}
+
+.home-hero__canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+/* Keep the social icons, spacing and motion; match their existing artwork to the dark hero. */
+.home-hero__content a[aria-label] {
+  border-radius: 17px;
+  outline: 1px solid #a71b24;
+  box-shadow: 0 0 17px #d4092040;
+}
+
+.home-hero__content a[aria-label] img {
+  border-radius: 17px;
+  filter: grayscale(1) invert(1);
+}
+
+.home-hero__side {
+  position: absolute;
+  z-index: 2;
+  color: #aaa5aa;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.home-hero__side--left {
+  top: 46%;
+  left: 3.2%;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.home-hero__side--right {
+  top: 9%;
+  right: 3.3%;
+}
+
+.home-hero__side--bottom {
+  left: 2.8%;
+  bottom: 12%;
+}
+
+.home-hero__spark {
+  position: absolute;
+  z-index: 2;
+  top: 18%;
+  left: 18%;
+  color: #fb1d2d;
+  font-size: 39px;
+  line-height: 1;
+  text-shadow: 0 0 22px #fc1b2f;
+  pointer-events: none;
+}
+
+.home-hero__scroll {
+  position: absolute;
+  z-index: 3;
+  bottom: 9%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 9px;
+  color: #aaa8aa;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-decoration: none;
+  transform: translateX(-50%);
+}
+
+.home-hero__scroll-star {
+  display: grid;
+  place-items: center;
+  height: 54px;
+  margin-bottom: 8px;
+  color: #f52231;
+  font-size: 18px;
+  text-shadow: 0 0 15px #ed1825;
+}
+
+.home-hero__scroll-star::before,
+.home-hero__scroll-star::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  height: 19px;
+  width: 1px;
+  background: #a8a0a2a8;
+}
+
+.home-hero__scroll-star::before {
+  top: -12px;
+}
+.home-hero__scroll-star::after {
+  top: 38px;
+}
+
+.home-hero__mouse {
+  display: flex;
+  width: 17px;
+  height: 26px;
+  justify-content: center;
+  padding-top: 6px;
+  border: 1px solid #c7c1c1;
+  border-radius: 9px;
+}
+
+.home-hero__mouse span {
+  width: 2px;
+  height: 5px;
+  border-radius: 2px;
+  background: #fa2735;
+}
+
+.home-hero__scroll:hover {
+  color: #fff;
+}
+
+body:has(.home-hero) header nav[aria-label="Navigasi utama"] > div {
+  border-color: #6e5e6270;
+  background: #100d0ecb;
+  box-shadow: 0 9px 30px #0009, inset 0 0 24px #fff1;
+  backdrop-filter: blur(16px);
+}
+
+body:has(.home-hero) header nav[aria-label="Navigasi utama"] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+body:has(.home-hero) header nav[aria-label="Navigasi utama"] a {
+  position: relative;
+  color: #aaa7aa;
+}
+
+body:has(.home-hero) header nav[aria-label="Navigasi utama"] a:hover,
+body:has(.home-hero) header nav[aria-label="Navigasi utama"] a.font-semibold {
+  color: #f8f8f8;
+}
+
+body:has(.home-hero)
+  header
+  nav[aria-label="Navigasi utama"]
+  a.font-semibold::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f11b29;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 767px) {
+  .home-hero {
+    min-height: max(100svh, 690px);
+  }
+  .home-hero__background {
+    background-position: center;
+  }
+  .home-hero__content {
+    margin-top: clamp(145px, 19vh, 185px);
+  }
+  .home-hero__title {
+    white-space: normal;
+    max-width: 610px;
+  }
+  .home-hero__description {
+    max-width: 460px;
+    margin-top: 15px;
+  }
+  .home-hero__side--left,
+  .home-hero__side--bottom {
+    display: none;
+  }
+  .home-hero__side--right {
+    top: 9%;
+    font-size: 8px;
+  }
+  .home-hero__spark {
+    top: 14%;
+    left: 9%;
+    font-size: 27px;
+  }
+  .home-hero__scroll {
+    bottom: 4%;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-hero__content {
+    width: min(100% - 36px, 390px);
+  }
+  .home-hero__title {
+    font-size: clamp(38px, 10vw, 50px);
+  }
+  .home-hero__role {
+    letter-spacing: 0.23em;
+  }
+  .home-hero__description {
+    font-size: 14px;
+  }
+  .home-hero__scroll-star {
+    height: 28px;
+    margin-bottom: 4px;
+  }
+  .home-hero__scroll-star::before,
+  .home-hero__scroll-star::after {
+    display: none;
+  }
+}

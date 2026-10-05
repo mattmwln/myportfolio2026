@@ -12,19 +12,6 @@ import instagram from "../assets/icons/social-media/instagram.webp";
 // Types
 import type { LogoSocialMedia } from "../types/header";
 
-// Tech stack
-import nextjs from "../assets/icons/tech-stack/nextjs.svg";
-import react from "../assets/icons/tech-stack/react.svg";
-import typescript from "../assets/icons/tech-stack/typescript.svg";
-import javascript from "../assets/icons/tech-stack/javascript.svg";
-import redux from "../assets/icons/tech-stack/redux.svg";
-import graphql from "../assets/icons/tech-stack/graphql.svg";
-import nodejs from "../assets/icons/tech-stack/nodejs.svg";
-import tailwind from "../assets/icons/tech-stack/tailwind.svg";
-import figma from "../assets/icons/tech-stack/figma.svg";
-import mongodb from "../assets/icons/tech-stack/mongodb.svg";
-import postgresql from "../assets/icons/tech-stack/postgresql.svg";
-
 // =======================
 // NAVBAR
 // =======================
@@ -82,27 +69,4 @@ export const dataLogoSocialMedia: LogoSocialMedia[] = [
     logo: email,
     navigate: `mailto:${socialEmail}`, // ✅ fix email
   },
-];
-
-// =======================
-// SKILLS (BEST PRACTICE)
-// =======================
-
-export interface Skill {
-  name: string;
-  logo: string; // ✅ string juga
-}
-
-export const dataSkills: string[] = [
-  nextjs,
-  react,
-  typescript,
-  javascript,
-  redux,
-  graphql,
-  nodejs,
-  tailwind,
-  figma,
-  mongodb,
-  postgresql,
 ];

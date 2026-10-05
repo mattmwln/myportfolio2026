@@ -1,23 +1,47 @@
 ---
 import ProjectsContent from "./ProjectsContent";
-
+import backgroundProjects from "../../assets/background-mafia/background-projects.webp";
+import "../../styles/projects.css";
 ---
 
-<section id="projects" class="py-32 relative container mx-auto px-6">
-
-  <!-- HEADER -->
-  <div class="mb-16 text-center relative">
-    <span class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs">
-      Highlight Work
-    </span>
-    <h2 class="text-4xl md:text-5xl font-black mt-3 text-gray-900">
-      Selected Projects
-    </h2>
-    <div class="w-12 h-1.5 bg-gray-300 mt-6 rounded-full mx-auto"></div>
-    
+<section id="projects" class="projects-scene" aria-labelledby="projects-title">
+  <div
+    class="projects-scene__background"
+    style={`background-image: url(${backgroundProjects});`}
+    aria-hidden="true"
+  >
   </div>
+  <div class="projects-scene__shade" aria-hidden="true"></div>
 
-  <!-- CONTENT -->
-  <ProjectsContent client:visible />
+  <div class="projects-scene__content">
+    <header class="projects-scene__header">
+      <p class="projects-scene__eyebrow">
+        <span>03</span><i></i> HIGHLIGHT WORK
+      </p>
+      <h2 id="projects-title" class="projects-scene__title">
+        Selected <span>Projects.</span>
+      </h2>
+      <p class="projects-scene__intro">
+        Beberapa proyek pilihan yang telah saya kembangkan,<br
+          class="projects-scene__desktop-break"
+        />
+        dari company project hingga client project.
+      </p>
+    </header>
 
+    <ProjectsContent />
+
+    <div class="projects-scene__footer" aria-hidden="true">
+      <span
+        >DEVELOP&nbsp;&nbsp; · &nbsp;&nbsp;DESIGN&nbsp;&nbsp; ·
+        &nbsp;&nbsp;SOLVE</span
+      >
+      <span class="projects-scene__footer-line"><i>✦</i></span>
+      <span>BUILD<br />BETTER<br />IDEAS</span>
+    </div>
+  </div>
+  <span class="projects-scene__side" aria-hidden="true"
+    >IDEAS<br />INTO<br />SOLUTIONS</span
+  >
+  <span class="projects-scene__spark" aria-hidden="true">✦</span>
 </section>

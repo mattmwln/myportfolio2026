@@ -8,6 +8,7 @@ const ChatAiButtonPalembang = () => {
   const [requestContent, setRequestContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
 
   const responseRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +26,17 @@ const ChatAiButtonPalembang = () => {
       responseRef.current.scrollTop = responseRef.current.scrollHeight;
     }
   }, [response]);
+
+  useEffect(() => {
+    const footer = document.getElementById("footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsFooterVisible(entry.isIntersecting);
+    });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   const toggleChat = () => setIsChatOpen(!isChatOpen);
   const handleMessageChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -223,14 +235,18 @@ const ChatAiButtonPalembang = () => {
       </div>
 
       {/* Notification */}
-      {showNotification && (
+      {showNotification && !isFooterVisible && (
         <div className="fixed bottom-20 left-7 z-50 bg-gray-800 text-white p-3 rounded-md shadow-lg">
           Cobak ngobrol AI Palembang 😎
         </div>
       )}
 
       {/* Chat Button */}
-      <div className="fixed bottom-7 hover:scale-110 left-7 z-50">
+      <div
+        className={`fixed bottom-7 hover:scale-110 left-7 z-50 ${
+          isFooterVisible && !isChatOpen ? "hidden" : ""
+        }`}
+      >
         <button
           onClick={toggleChat}
           className="text-white p-3 rounded-full shadow-lg focus:outline-none"

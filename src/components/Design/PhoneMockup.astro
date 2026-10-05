@@ -1,0 +1,52 @@
+---
+import frame from "../../assets/images/mockup/mockup-handphone.webp";
+const { feed, title } = Astro.props;
+---
+
+<div
+  class="design-phones"
+  role="img"
+  aria-label={`Mockup tiga ponsel menampilkan ${title}`}
+>
+  {
+    ["left", "right", "center"].map((side) => (
+      <div
+        class={`design-phone-screen design-phone-screen--${side}`}
+        aria-hidden="true"
+      >
+        <div class="design-phone-ui">
+          <strong>Instagram</strong>
+          <>
+            <small>
+              9:41 <span>● ▰</span>
+            </small>
+            <p>
+              Design Preview <span>•••</span>
+            </p>
+          </>
+        </div>
+        <div class="design-phone-feed">
+          {Array.from({ length: 9 }, (_, index) => (
+            <span
+              style={`background-image:url(${feed});background-position:${
+                (index % 5) * 25
+              }% ${index < 5 ? 20 : 80}%;`}
+            />
+          ))}
+        </div>
+        <div class="design-phone-nav">
+          ⌂ &nbsp; ⌕ &nbsp; ⊞ &nbsp; ♡ &nbsp; ○
+        </div>
+      </div>
+    ))
+  }
+  <img
+    class="design-phones__frame"
+    src={frame}
+    alt=""
+    width="1536"
+    height="1024"
+    loading="lazy"
+    decoding="async"
+  />
+</div>

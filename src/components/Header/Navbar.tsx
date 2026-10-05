@@ -1,24 +1,55 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { dataNavbar } from "../../constants";
 import { motion } from "framer-motion";
 
 import hamburgerIcon from "../../assets/icons/hamburger.svg";
 import closeIcon from "../../assets/icons/close.svg";
 
-const buttonStyles = {
-  fontSize: "1.4em",
-  padding: "0.6em 0.8em",
-  borderRadius: "0.5em",
-  border: "none",
-  backgroundColor: "#111827",
-  color: "#fff",
-  cursor: "pointer",
-  boxShadow: "2px 2px 3px #000000b4",
-};
-
 const Navbar: React.FC = () => {
   const [activeNav, setActiveNav] = useState<string>("");
   const [isNavbarResponsive, setIsNavbarResponsive] = useState<boolean>(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!isNavbarResponsive) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsNavbarResponsive(false);
+        toggleRef.current?.focus();
+      }
+      if (event.key === "Tab") {
+        const links = Array.from(
+          panelRef.current?.querySelectorAll<HTMLAnchorElement>("a") ?? []
+        );
+        const controls = [toggleRef.current, ...links].filter(
+          (el): el is HTMLButtonElement | HTMLAnchorElement => el !== null
+        );
+        const index = controls.indexOf(
+          document.activeElement as HTMLButtonElement | HTMLAnchorElement
+        );
+        if (event.shiftKey && index <= 0) {
+          event.preventDefault();
+          controls[controls.length - 1]?.focus();
+        } else if (!event.shiftKey && index === controls.length - 1) {
+          event.preventDefault();
+          controls[0]?.focus();
+        }
+      }
+    };
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setIsNavbarResponsive(false);
+    };
+    document.addEventListener("keydown", handleKey);
+    window.addEventListener("resize", handleResize);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKey);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isNavbarResponsive]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,7 +68,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   const handleResponsive = () => {
-    setIsNavbarResponsive(!isNavbarResponsive);
+    setIsNavbarResponsive((open) => !open);
   };
 
   const containerNavbar = {
@@ -82,12 +113,12 @@ const Navbar: React.FC = () => {
       </motion.nav>
       <div className="lg:hidden lg:mx-10 lg:my-10 mx-5 my-5 flex justify-end z-[60] fixed right-0 top-0">
         <button
+          ref={toggleRef}
           aria-label={isNavbarResponsive ? "Tutup navigasi" : "Buka navigasi"}
           aria-expanded={isNavbarResponsive}
           aria-controls="mobile-navigation"
           onClick={handleResponsive}
-          className="navbar-toggle cursor-pointer lg:p-2.5 p-2"
-          style={buttonStyles}
+          className={`navbar-toggle${isNavbarResponsive ? " is-open" : ""}`}
         >
           <img
             src={isNavbarResponsive ? closeIcon : hamburgerIcon}
@@ -99,40 +130,47 @@ const Navbar: React.FC = () => {
         </button>
       </div>
       <nav
+        ref={panelRef}
         id="mobile-navigation"
         aria-label="Navigasi seluler"
         style={{ visibility: isNavbarResponsive ? "visible" : "hidden" }}
-        className={`${
-          isNavbarResponsive ? "right-0 " : "-right-full"
-        } lg:hidden fixed top-0 bg-[#f1f1f1] w-full h-screen transition-all duration-300 ease-out z-50`}
+        className={`mobile-menu lg:hidden${
+          isNavbarResponsive ? " is-open" : ""
+        }`}
       >
-        <div
-          className="mx-5 font-extrabold text-2xl italic fixed top-7"
-          style={{ color: "#111827" }}
-        >
-          MATTMWLN.
+        <div className="mobile-menu__brand">
+          MATTMWLN<span>.</span>
         </div>
-        <div className="w-full h-screen flex flex-col justify-center items-center gap-10 lg:text-base text-sm">
-          {dataNavbar.map(({ id, navigate, navigate_url }) => (
+        <div className="mobile-menu__links">
+          <p className="mobile-menu__eyebrow">EXPLORE THE PORTFOLIO</p>
+          {dataNavbar.map(({ id, navigate, navigate_url }, index) => (
             <a
               href={
                 navigate_url.startsWith("/") ? navigate_url : `#${navigate_url}`
               }
               key={id}
-              className={`${
-                activeNav === navigate_url
-                  ? "text-primary/90 font-semibold"
-                  : "hover:text-primary text-primary/50 cursor-pointer font-medium"
+              className={`mobile-menu__link${
+                activeNav === navigate_url ? " is-active" : ""
               }`}
               onClick={() => {
                 setActiveNav(navigate_url);
-                handleResponsive();
+                setIsNavbarResponsive(false);
+                toggleRef.current?.focus();
               }}
             >
+              <span className="mobile-menu__number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               {navigate}
+              <span className="mobile-menu__arrow" aria-hidden="true">
+                ↗
+              </span>
             </a>
           ))}
         </div>
+        <p className="mobile-menu__footer">
+          IDEAS <span>✦</span> BUILD <span>✦</span> IMPACT
+        </p>
       </nav>
     </Fragment>
   );

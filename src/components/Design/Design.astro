@@ -1,256 +1,128 @@
 ---
 import { DATA_DESIGN } from "./DataDesign";
+import background from "../../assets/background-mafia/background-design.webp";
+import "../../styles/design.css";
+const selected = "mac";
 ---
 
-<section class="py-32 bg-white">
-  <div class="container mx-auto px-6">
-    <!-- HEADER -->
-    <div class="mb-16 text-center">
-      <span class="text-gray-500 font-bold uppercase tracking-[0.3em] text-xs">
-        Project Design
-      </span>
-      <h2 class="text-4xl md:text-5xl font-black mt-3 text-gray-900">
-        Social Media
-      </h2>
-      <div class="w-12 h-1.5 bg-gray-300 mt-6 rounded-full mx-auto"></div>
-    </div>
-
-    <div class="max-w-5xl mx-auto flex flex-col md:flex-row gap-16">
-      <!-- LEFT -->
-      <div class="w-full md:w-5/12 space-y-2">
+<section id="design" class="design-scene" aria-labelledby="design-title">
+  <div
+    class="design-scene__background"
+    style={`background-image:url(${background});`}
+    aria-hidden="true"
+  >
+  </div>
+  <div class="design-scene__content">
+    <header class="design-scene__header">
+      <div class="design-scene__ornament" aria-hidden="true">
+        <span></span>✦<span></span>
+      </div>
+      <p>PROJECT DESIGN</p>
+      <h2 id="design-title">Social <span>Media</span></h2>
+      <p class="design-scene__intro">
+        Visual content for stronger brand presence.
+      </p>
+    </header>
+    <div class="design-scene__columns">
+      <div class="design-accordion">
         {
           Object.entries(DATA_DESIGN).map(([key, item], index) => (
             <div
-              class={`accordion-item border-b border-gray-200 pb-6 cursor-pointer ${
-                index === 0 ? "active" : ""
-              }`}
-              data-type={key}
+              class={`design-item${key === selected ? " is-active" : ""}`}
+              data-design-key={key}
             >
-              <h3 class="text-2xl font-black text-gray-900">
+              <h3>
                 <button
                   type="button"
-                  class="flex w-full text-left items-center justify-between py-4"
-                  aria-expanded={index === 0}
-                  aria-controls={`design-${key}`}
+                  aria-expanded={key === selected}
+                  aria-controls={`design-panel-${key}`}
                 >
-                  <span>{item.title}</span>
-
-                  <span class="chevron text-gray-400">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-width="2"
-                        d="M6 9l6 6 6-6"
-                      />
-                    </svg>
+                  <span class="design-item__number">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
+                  <>
+                    <span>{item.title}</span>
+                    <span class="design-item__chevron" aria-hidden="true">
+                      ⌄
+                    </span>
+                  </>
                 </button>
               </h3>
-
-              <div id={`design-${key}`} class="accordion-content">
-                <p class="text-sm text-gray-600 leading-relaxed mb-6 max-w-md">
-                  {item.description}
-                </p>
-
-                <div class="mobile-visual-container block md:hidden" />
+              <div
+                id={`design-panel-${key}`}
+                class="design-item__panel"
+                hidden={key !== selected}
+              >
+                <p>{item.description}</p>
+                <div class="design-item__mobile">
+                  <img
+                    class="design-mockup"
+                    src={item.mockupImg}
+                    alt={`Mockup tiga ponsel menampilkan ${item.title}`}
+                    width="1536"
+                    height="1024"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
           ))
         }
       </div>
-
-      <!-- RIGHT -->
-      <div
-        id="desktop-visual"
-        class="hidden md:flex w-7/12 relative justify-center items-center min-h-[420px]"
-      >
-        <img
-          src={DATA_DESIGN.iphone.tabletImg}
-          alt={DATA_DESIGN.iphone.title}
-          width="1200"
-          height="900"
-          loading="lazy"
-          decoding="async"
-          class="w-full rounded-[2rem]"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-  :root {
-    --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .accordion-content {
-    height: auto;
-    overflow: hidden;
-    opacity: 1;
-    transform: translateY(-8px) scale(0.98);
-    transition: height 0.55s var(--spring), opacity 0.35s ease,
-      transform 0.55s var(--spring);
-  }
-
-  .accordion-item.active .accordion-content {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  .chevron {
-    transition: transform 0.5s var(--spring);
-  }
-
-  .accordion-item.active .chevron {
-    transform: rotate(180deg) scale(1.15);
-  }
-
-  .device-shadow {
-    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.15);
-  }
-
-  .visual-wrapper {
-    animation: springIn 0.6s var(--spring);
-  }
-
-  @keyframes springIn {
-    0% {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    60% {
-      opacity: 1;
-      transform: scale(1.03);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-</style>
-
-<script>
-  import { DATA_DESIGN, type DesignType } from "./DataDesign";
-
-  function renderVisual(type: DesignType, isMobile: boolean = false): string {
-    const data = DATA_DESIGN[type];
-
-    return `
-      <div class="visual-wrapper relative flex justify-center items-center w-full">
-        <div class="${
-          isMobile ? "w-[75%]" : "w-[80%]"
-        } aspect-[4/3] bg-black rounded-[2rem] p-2 device-shadow">
-          <img src="${data.tabletImg}" alt="${
-      data.title
-    }" width="1200" height="900" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-[1.5rem]" />
-        </div>
-
-        ${
-          data.showPhone
-            ? `<div class="${
-                isMobile ? "w-[30%] -ml-12 mt-8" : "absolute w-[35%]"
-              } aspect-[1/2] bg-black rounded-[2rem] p-1 device-shadow">
-                <img src="${
-                  data.phoneImg
-                }" alt="" width="600" height="1200" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-[1.5rem]" />
-              </div>`
-            : ""
+      <div class="design-scene__visuals">
+        {
+          Object.entries(DATA_DESIGN).map(([key, item]) => (
+            <div
+              class="design-visual"
+              data-design-visual={key}
+              hidden={key !== selected}
+            >
+              <img
+                class="design-mockup"
+                src={item.mockupImg}
+                alt={`Mockup tiga ponsel menampilkan ${item.title}`}
+                width="1536"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          ))
         }
       </div>
-    `;
-  }
+    </div>
+    <div class="design-scene__footer" aria-hidden="true">
+      <span>IDEAS / DESIGN / VISUAL / IMPACT</span><span
+        >✦ &nbsp; SOCIAL MEDIA<br />BRAND GROWTH</span
+      >
+    </div>
+  </div>
+  <span class="design-scene__side" aria-hidden="true"
+    >CREATE<br />ENGAGE<br />INSPIRE</span
+  >
+</section>
 
-  function animateOpen(content: HTMLElement): void {
-    content.style.height = "0px";
-
-    requestAnimationFrame(() => {
-      content.style.height = content.scrollHeight + "px";
-      content.style.opacity = "1";
-      content.style.transform = "translateY(0) scale(1)";
+<script>
+  const section = document.querySelector("#design");
+  const items = section?.querySelectorAll<HTMLElement>(".design-item");
+  items?.forEach((item) => {
+    item.querySelector("button")?.addEventListener("click", () => {
+      items.forEach((other) => {
+        const active = other === item;
+        other.classList.toggle("is-active", active);
+        other
+          .querySelector("button")
+          ?.setAttribute("aria-expanded", String(active));
+        const panel = other.querySelector<HTMLElement>(".design-item__panel");
+        if (panel) panel.hidden = !active;
+      });
+      section
+        ?.querySelectorAll<HTMLElement>("[data-design-visual]")
+        .forEach((visual) => {
+          visual.hidden =
+            visual.dataset.designVisual !== item.dataset.designKey;
+        });
     });
-  }
-
-  function animateClose(content: HTMLElement): void {
-    content.style.height = content.scrollHeight + "px";
-
-    requestAnimationFrame(() => {
-      content.style.height = "0px";
-      content.style.opacity = "0";
-      content.style.transform = "translateY(-8px) scale(0.98)";
-    });
-  }
-
-  function updateContent(el: HTMLElement): void {
-    const type = el.dataset.type as DesignType;
-
-    el.style.transform = "scale(0.98)";
-    setTimeout(() => (el.style.transform = "scale(1)"), 120);
-
-    document.querySelectorAll(".accordion-item").forEach((item) => {
-      const element = item as HTMLElement;
-      const content = element.querySelector(
-        ".accordion-content"
-      ) as HTMLElement | null;
-
-      if (element.classList.contains("active") && content) {
-        animateClose(content);
-      }
-
-      element.classList.remove("active");
-      element.querySelector("button")?.setAttribute("aria-expanded", "false");
-
-      const mobile = element.querySelector(
-        ".mobile-visual-container"
-      ) as HTMLElement | null;
-      if (mobile) mobile.innerHTML = "";
-    });
-
-    const content = el.querySelector(
-      ".accordion-content"
-    ) as HTMLElement | null;
-    if (!content) return;
-
-    el.classList.add("active");
-    el.querySelector("button")?.setAttribute("aria-expanded", "true");
-    animateOpen(content);
-
-    if (window.innerWidth >= 768) {
-      const container = document.getElementById("desktop-visual");
-      if (container) {
-        container.innerHTML = renderVisual(type);
-      }
-    } else {
-      const mobile = el.querySelector(
-        ".mobile-visual-container"
-      ) as HTMLElement | null;
-      if (mobile) {
-        mobile.innerHTML = renderVisual(type, true);
-      }
-    }
-  }
-
-  document.querySelectorAll(".accordion-item").forEach((item) => {
-    const el = item as HTMLElement;
-    el.querySelector("button")?.addEventListener("click", () =>
-      updateContent(el)
-    );
-  });
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const first = document.querySelector(
-      ".accordion-item"
-    ) as HTMLElement | null;
-    if (!first) return;
-
-    document.querySelectorAll(".accordion-content").forEach((item) => {
-      const content = item as HTMLElement;
-      content.style.height = "0px";
-      content.style.opacity = "0";
-    });
-    updateContent(first);
   });
 </script>

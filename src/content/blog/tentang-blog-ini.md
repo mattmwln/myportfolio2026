@@ -3,6 +3,9 @@ title: Tentang Blog Ini
 description: Ruang catatan Rahmat Maulana tentang teknologi, pengembangan web, visualisasi data, proyek, dan proses belajar.
 publishedAt: 2026-10-02
 category: Catatan
+cover:
+  src: /blog/images/tentang-blog-ini.webp
+  alt: Ilustrasi buku catatan dan pena di meja marmer dengan pencahayaan merah
 tags:
   - Sistem Informasi
 draft: false

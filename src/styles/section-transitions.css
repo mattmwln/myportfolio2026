@@ -1,0 +1,51 @@
+/* A shared edge color joins the scenes while keeping their central artwork clear. */
+:is(
+    .home-hero__background,
+    .about-background,
+    .experience-bg,
+    .skills-background,
+    .projects-scene__background,
+    .design-scene__background,
+    .writing-scene__background,
+    .footer-scene__background
+  )::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --scene-fade-height: clamp(100px, 11vw, 170px);
+  background-image: linear-gradient(
+      to bottom,
+      #040202 0%,
+      #140304f5 14%,
+      #42070d80 42%,
+      #25040730 70%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to top,
+      #040202 0%,
+      #140304f5 14%,
+      #42070d80 42%,
+      #25040730 70%,
+      transparent 100%
+    );
+  background-size: 100% var(--scene-fade-height);
+  background-position: center top, center bottom;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 767px) {
+  :is(
+      .home-hero__background,
+      .about-background,
+      .experience-bg,
+      .skills-background,
+      .projects-scene__background,
+      .design-scene__background,
+      .writing-scene__background,
+      .footer-scene__background
+    )::after {
+    --scene-fade-height: 105px;
+  }
+}
